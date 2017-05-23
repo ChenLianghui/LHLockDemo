@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EEAD9FF1ED42BB300F92E33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAD9FE1ED42BB300F92E33 /* main.m */; };
+		0EEADA021ED42BB300F92E33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEADA011ED42BB300F92E33 /* AppDelegate.m */; };
+		0EEADA051ED42BB300F92E33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEADA041ED42BB300F92E33 /* ViewController.m */; };
+		0EEADA081ED42BB300F92E33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EEADA061ED42BB300F92E33 /* Main.storyboard */; };
+		0EEADA0A1ED42BB300F92E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EEADA091ED42BB300F92E33 /* Assets.xcassets */; };
+		0EEADA0D1ED42BB300F92E33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EEADA0B1ED42BB300F92E33 /* LaunchScreen.storyboard */; };
+		0EEADA181ED42BB300F92E33 /* LHSmartLockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEADA171ED42BB300F92E33 /* LHSmartLockTests.m */; };
+		0EEADA231ED42BB300F92E33 /* LHSmartLockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEADA221ED42BB300F92E33 /* LHSmartLockUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0EEADA141ED42BB300F92E33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EEAD9F21ED42BB300F92E33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0EEAD9F91ED42BB300F92E33;
+			remoteInfo = LHSmartLock;
+		};
+		0EEADA1F1ED42BB300F92E33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EEAD9F21ED42BB300F92E33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0EEAD9F91ED42BB300F92E33;
+			remoteInfo = LHSmartLock;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0EEAD9FA1ED42BB300F92E33 /* LHSmartLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LHSmartLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EEAD9FE1ED42BB300F92E33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0EEADA001ED42BB300F92E33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0EEADA011ED42BB300F92E33 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0EEADA031ED42BB300F92E33 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0EEADA041ED42BB300F92E33 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0EEADA071ED42BB300F92E33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0EEADA091ED42BB300F92E33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0EEADA0C1ED42BB300F92E33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0EEADA0E1ED42BB300F92E33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EEADA131ED42BB300F92E33 /* LHSmartLockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LHSmartLockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EEADA171ED42BB300F92E33 /* LHSmartLockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSmartLockTests.m; sourceTree = "<group>"; };
+		0EEADA191ED42BB300F92E33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EEADA1E1ED42BB300F92E33 /* LHSmartLockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LHSmartLockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EEADA221ED42BB300F92E33 /* LHSmartLockUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHSmartLockUITests.m; sourceTree = "<group>"; };
+		0EEADA241ED42BB300F92E33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0EEAD9F71ED42BB300F92E33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EEADA101ED42BB300F92E33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EEADA1B1ED42BB300F92E33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0EEAD9F11ED42BB300F92E33 = {
+			isa = PBXGroup;
+			children = (
+				0EEAD9FC1ED42BB300F92E33 /* LHSmartLock */,
+				0EEADA161ED42BB300F92E33 /* LHSmartLockTests */,
+				0EEADA211ED42BB300F92E33 /* LHSmartLockUITests */,
+				0EEAD9FB1ED42BB300F92E33 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0EEAD9FB1ED42BB300F92E33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0EEAD9FA1ED42BB300F92E33 /* LHSmartLock.app */,
+				0EEADA131ED42BB300F92E33 /* LHSmartLockTests.xctest */,
+				0EEADA1E1ED42BB300F92E33 /* LHSmartLockUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0EEAD9FC1ED42BB300F92E33 /* LHSmartLock */ = {
+			isa = PBXGroup;
+			children = (
+				0EEADA001ED42BB300F92E33 /* AppDelegate.h */,
+				0EEADA011ED42BB300F92E33 /* AppDelegate.m */,
+				0EEADA031ED42BB300F92E33 /* ViewController.h */,
+				0EEADA041ED42BB300F92E33 /* ViewController.m */,
+				0EEADA061ED42BB300F92E33 /* Main.storyboard */,
+				0EEADA091ED42BB300F92E33 /* Assets.xcassets */,
+				0EEADA0B1ED42BB300F92E33 /* LaunchScreen.storyboard */,
+				0EEADA0E1ED42BB300F92E33 /* Info.plist */,
+				0EEAD9FD1ED42BB300F92E33 /* Supporting Files */,
+			);
+			path = LHSmartLock;
+			sourceTree = "<group>";
+		};
+		0EEAD9FD1ED42BB300F92E33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0EEAD9FE1ED42BB300F92E33 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0EEADA161ED42BB300F92E33 /* LHSmartLockTests */ = {
+			isa = PBXGroup;
+			children = (
+				0EEADA171ED42BB300F92E33 /* LHSmartLockTests.m */,
+				0EEADA191ED42BB300F92E33 /* Info.plist */,
+			);
+			path = LHSmartLockTests;
+			sourceTree = "<group>";
+		};
+		0EEADA211ED42BB300F92E33 /* LHSmartLockUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0EEADA221ED42BB300F92E33 /* LHSmartLockUITests.m */,
+				0EEADA241ED42BB300F92E33 /* Info.plist */,
+			);
+			path = LHSmartLockUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0EEAD9F91ED42BB300F92E33 /* LHSmartLock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EEADA271ED42BB300F92E33 /* Build configuration list for PBXNativeTarget "LHSmartLock" */;
+			buildPhases = (
+				0EEAD9F61ED42BB300F92E33 /* Sources */,
+				0EEAD9F71ED42BB300F92E33 /* Frameworks */,
+				0EEAD9F81ED42BB300F92E33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LHSmartLock;
+			productName = LHSmartLock;
+			productReference = 0EEAD9FA1ED42BB300F92E33 /* LHSmartLock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0EEADA121ED42BB300F92E33 /* LHSmartLockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EEADA2A1ED42BB300F92E33 /* Build configuration list for PBXNativeTarget "LHSmartLockTests" */;
+			buildPhases = (
+				0EEADA0F1ED42BB300F92E33 /* Sources */,
+				0EEADA101ED42BB300F92E33 /* Frameworks */,
+				0EEADA111ED42BB300F92E33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0EEADA151ED42BB300F92E33 /* PBXTargetDependency */,
+			);
+			name = LHSmartLockTests;
+			productName = LHSmartLockTests;
+			productReference = 0EEADA131ED42BB300F92E33 /* LHSmartLockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0EEADA1D1ED42BB300F92E33 /* LHSmartLockUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EEADA2D1ED42BB300F92E33 /* Build configuration list for PBXNativeTarget "LHSmartLockUITests" */;
+			buildPhases = (
+				0EEADA1A1ED42BB300F92E33 /* Sources */,
+				0EEADA1B1ED42BB300F92E33 /* Frameworks */,
+				0EEADA1C1ED42BB300F92E33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0EEADA201ED42BB300F92E33 /* PBXTargetDependency */,
+			);
+			name = LHSmartLockUITests;
+			productName = LHSmartLockUITests;
+			productReference = 0EEADA1E1ED42BB300F92E33 /* LHSmartLockUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0EEAD9F21ED42BB300F92E33 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "陈良辉";
+				TargetAttributes = {
+					0EEAD9F91ED42BB300F92E33 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7ZKMYBPL55;
+						ProvisioningStyle = Automatic;
+					};
+					0EEADA121ED42BB300F92E33 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7ZKMYBPL55;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0EEAD9F91ED42BB300F92E33;
+					};
+					0EEADA1D1ED42BB300F92E33 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7ZKMYBPL55;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0EEAD9F91ED42BB300F92E33;
+					};
+				};
+			};
+			buildConfigurationList = 0EEAD9F51ED42BB300F92E33 /* Build configuration list for PBXProject "LHSmartLock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0EEAD9F11ED42BB300F92E33;
+			productRefGroup = 0EEAD9FB1ED42BB300F92E33 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0EEAD9F91ED42BB300F92E33 /* LHSmartLock */,
+				0EEADA121ED42BB300F92E33 /* LHSmartLockTests */,
+				0EEADA1D1ED42BB300F92E33 /* LHSmartLockUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0EEAD9F81ED42BB300F92E33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EEADA0D1ED42BB300F92E33 /* LaunchScreen.storyboard in Resources */,
+				0EEADA0A1ED42BB300F92E33 /* Assets.xcassets in Resources */,
+				0EEADA081ED42BB300F92E33 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EEADA111ED42BB300F92E33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EEADA1C1ED42BB300F92E33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0EEAD9F61ED42BB300F92E33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EEADA051ED42BB300F92E33 /* ViewController.m in Sources */,
+				0EEADA021ED42BB300F92E33 /* AppDelegate.m in Sources */,
+				0EEAD9FF1ED42BB300F92E33 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EEADA0F1ED42BB300F92E33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EEADA181ED42BB300F92E33 /* LHSmartLockTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EEADA1A1ED42BB300F92E33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EEADA231ED42BB300F92E33 /* LHSmartLockUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0EEADA151ED42BB300F92E33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0EEAD9F91ED42BB300F92E33 /* LHSmartLock */;
+			targetProxy = 0EEADA141ED42BB300F92E33 /* PBXContainerItemProxy */;
+		};
+		0EEADA201ED42BB300F92E33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0EEAD9F91ED42BB300F92E33 /* LHSmartLock */;
+			targetProxy = 0EEADA1F1ED42BB300F92E33 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0EEADA061ED42BB300F92E33 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0EEADA071ED42BB300F92E33 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0EEADA0B1ED42BB300F92E33 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0EEADA0C1ED42BB300F92E33 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0EEADA251ED42BB300F92E33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0EEADA261ED42BB300F92E33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0EEADA281ED42BB300F92E33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7ZKMYBPL55;
+				INFOPLIST_FILE = LHSmartLock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0EEADA291ED42BB300F92E33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7ZKMYBPL55;
+				INFOPLIST_FILE = LHSmartLock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0EEADA2B1ED42BB300F92E33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7ZKMYBPL55;
+				INFOPLIST_FILE = LHSmartLockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LHSmartLock.app/LHSmartLock";
+			};
+			name = Debug;
+		};
+		0EEADA2C1ED42BB300F92E33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 7ZKMYBPL55;
+				INFOPLIST_FILE = LHSmartLockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLockTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LHSmartLock.app/LHSmartLock";
+			};
+			name = Release;
+		};
+		0EEADA2E1ED42BB300F92E33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7ZKMYBPL55;
+				INFOPLIST_FILE = LHSmartLockUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLockUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LHSmartLock;
+			};
+			name = Debug;
+		};
+		0EEADA2F1ED42BB300F92E33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7ZKMYBPL55;
+				INFOPLIST_FILE = LHSmartLockUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLockUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LHSmartLock;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0EEAD9F51ED42BB300F92E33 /* Build configuration list for PBXProject "LHSmartLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EEADA251ED42BB300F92E33 /* Debug */,
+				0EEADA261ED42BB300F92E33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EEADA271ED42BB300F92E33 /* Build configuration list for PBXNativeTarget "LHSmartLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EEADA281ED42BB300F92E33 /* Debug */,
+				0EEADA291ED42BB300F92E33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0EEADA2A1ED42BB300F92E33 /* Build configuration list for PBXNativeTarget "LHSmartLockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EEADA2B1ED42BB300F92E33 /* Debug */,
+				0EEADA2C1ED42BB300F92E33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0EEADA2D1ED42BB300F92E33 /* Build configuration list for PBXNativeTarget "LHSmartLockUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EEADA2E1ED42BB300F92E33 /* Debug */,
+				0EEADA2F1ED42BB300F92E33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0EEAD9F21ED42BB300F92E33 /* Project object */;
+}
