@@ -1,0 +1,15 @@
+//
+//  SmartLockPrefixHeader.pch
+//  LHSmartLock
+//
+//  Created by 陈良辉 on 2017/5/23.
+//  Copyright © 2017年 陈良辉. All rights reserved.
+//
+
+#ifndef SmartLockPrefixHeader_pch
+#define SmartLockPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* SmartLockPrefixHeader_pch */
