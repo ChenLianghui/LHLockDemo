@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addImageWithName:@"" isLeft:YES WithBlock:nil];
+    
     // Do any additional setup after loading the view.
 }
 

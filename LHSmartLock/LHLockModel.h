@@ -10,4 +10,8 @@
 
 @interface LHLockModel : LHBaseModel
 
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,assign) int electricNumber;
+@property (nonatomic,assign) BOOL isLock;
+
 @end

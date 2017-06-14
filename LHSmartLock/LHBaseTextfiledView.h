@@ -10,4 +10,7 @@
 
 @interface LHBaseTextfiledView : UIView
 
+@property (nonatomic,strong)UITextField *textfield;
+@property (nonatomic,strong)UILabel *titleLabel;
+
 @end

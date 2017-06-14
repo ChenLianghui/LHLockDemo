@@ -16,12 +16,12 @@
 
 //导航栏背景色
 + (UIColor *)naviBackColor {
-    return [UIColor colorWithHex:0xf5f5f5];
+    return [UIColor colorWithHex:0x5F5964];
 }
 
 //应用主题色
 + (UIColor *)appThemeColor {
-    return [UIColor colorWithHex:0x30a6fa];
+    return [UIColor colorWithHex:0x10B553];
 }
 
 //高亮主题色

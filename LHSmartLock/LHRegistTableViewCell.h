@@ -10,4 +10,8 @@
 
 @interface LHRegistTableViewCell : UITableViewCell
 
+@property (nonatomic,strong)UILabel *desLabel;
+@property (nonatomic,strong)UITextField *textField;
+
+
 @end

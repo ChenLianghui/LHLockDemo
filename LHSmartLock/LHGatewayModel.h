@@ -10,4 +10,7 @@
 
 @interface LHGatewayModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *name;
+@property (nonatomic,copy)NSArray *locks;
+
 @end

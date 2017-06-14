@@ -9,5 +9,10 @@
 #ifndef LHUserDefaultDefines_h
 #define LHUserDefaultDefines_h
 
+#define userDefault_isConnectWifi @"isConnectWifi"
+#define key_userName @"key_userName"
+#define key_userId @"key_userId"
+#define key_userPhone @"key_userPhone"
+#define key_userToken @"key_userToken"
 
 #endif /* LHUserDefaultDefines_h */

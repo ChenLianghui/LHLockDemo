@@ -20,8 +20,17 @@
 
 - (CGRect)leftViewRectForBounds:(CGRect)bounds{
     [super leftViewRectForBounds:bounds];
-    CGRect rect = CGRectMake(15, 5, 30, 30);
-    return rect;
+    CGRect iconRect = [super leftViewRectForBounds:bounds];
+    iconRect.origin.x += 15;
+    return iconRect;
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds{
+    return CGRectInset(bounds, 45, 0);
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds{
+    return CGRectInset(bounds, 45, 0);
 }
 
 - (CGRect)rightViewRectForBounds:(CGRect)bounds{

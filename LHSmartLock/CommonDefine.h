@@ -17,12 +17,19 @@
 #import "AFNetworking.h"
 #import "Masonry.h"
 #import "UIColor+Hex.h"
+#import "UIColor+App.h"
 #import "LHUtils.h"
 #import "UIFont+App.h"
 #import "UIImage+Extents.h"
 #import "NSObject+Swizzle.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <objc/runtime.h>
+#import "LHNotificationDefines.h"
+#import "LHUserDefaultDefines.h"
+#import "UIViewController+HUD.h"
+
+#define LHNotifyCenter [NSNotificationCenter defaultCenter]
+
 //屏幕尺寸
 #define kScreenSize ([UIScreen mainScreen].bounds.size)
 #define kScreenWidth ([UIScreen mainScreen].bounds.size.width)

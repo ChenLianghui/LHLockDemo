@@ -12,6 +12,8 @@
 
 - (NSString*)md5;
 
++ (UIImage*)createImageWithColor:(UIColor*)color;
+
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
 + (UIImage *)imageFromColors:(NSArray*)colors size:(CGSize)size;

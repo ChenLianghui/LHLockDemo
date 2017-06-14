@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LHTabBarViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    LHTabBarViewController *TabbarVC = [[LHTabBarViewController alloc] init];
+    self.window.rootViewController = TabbarVC;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

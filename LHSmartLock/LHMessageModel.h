@@ -10,4 +10,9 @@
 
 @interface LHMessageModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *titleStr;
+@property (nonatomic,copy)NSString *detailStr;
+@property (nonatomic,copy)NSString *timeStr;
+@property (nonatomic,assign)BOOL isWarning;
+
 @end

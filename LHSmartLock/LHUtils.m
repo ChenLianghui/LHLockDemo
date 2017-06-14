@@ -23,5 +23,13 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:mobile];
 }
-    
+
++ (BOOL)isCurrentLanguageIsChinese{
+    NSString *udfLanguageCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"][0];
+    if ([udfLanguageCode isEqualToString:@"zh-Hans-US"]) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

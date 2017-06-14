@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^myBlock)();
+
 @interface LHBaseViewController : UIViewController
+
+- (void)addTitleViewWithName:(NSString *)name;
+- (void)addTitleViewWithName:(NSString *)name textColor:(UIColor *)color;
+- (void)addItemWithName:(NSString *)name isLeft:(BOOL)isleft WithBlock:(myBlock)block;
+- (void)addImageWithName:(NSString *)name isLeft:(BOOL)isleft WithBlock:(myBlock)block;
 
 @end

@@ -19,5 +19,7 @@ typedef enum : NSUInteger {
 + (BOOL)isEmptyStr:(NSString*)str;
     
 + (BOOL)verifyMobile:(NSString *)mobile;
+
++ (BOOL)isCurrentLanguageIsChinese;
     
 @end

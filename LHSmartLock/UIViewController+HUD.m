@@ -84,7 +84,7 @@ static NSDate *createTime = nil;
 
 - (void)showSucceed:(NSString *)message complete:(MBProgressHUDCompletionBlock)block {
     [self checkCreateLoading];
-    UIImage     *tipImage = [UIImage imageNamed:@"cc_tip_successfully"];
+    UIImage     *tipImage = [UIImage imageNamed:@"tip_successfully"];
     UIImageView *tipImageView = [[UIImageView alloc] initWithImage:tipImage];
     self.loadingView.HUD.minSize = CGSizeMake(kSizeFrom750(460), kSizeFrom750(250));
     [self.loadingView showWithCustomView:tipImageView label:message duration:kHUDNormalDuration complete:block];
@@ -92,7 +92,7 @@ static NSDate *createTime = nil;
 
 - (void)showFailed:(NSString *)message {
     [self checkCreateLoading];
-    UIImage     *tipImage = [UIImage imageNamed:@"cc_tip_error"];
+    UIImage     *tipImage = [UIImage imageNamed:@"tip_error"];
     UIImageView *tipImageView = [[UIImageView alloc] initWithImage:tipImage];
     self.loadingView.HUD.minSize = CGSizeMake(kSizeFrom750(460), kSizeFrom750(250));
     [self.loadingView showWithCustomView:tipImageView label:message duration:kHUDNormalDuration];

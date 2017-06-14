@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHRecordCellModel.h"
 
 @interface LHRecordListTableViewCell : UITableViewCell
+
+@property (nonatomic,strong)UILabel *roomLabel;
+@property (nonatomic,strong)UILabel *timeLabel;
+@property (nonatomic,strong)LHRecordCellModel *recordModel;
 
 @end

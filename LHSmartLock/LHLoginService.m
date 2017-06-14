@@ -7,7 +7,110 @@
 //
 
 #import "LHLoginService.h"
+#import "LHNetworkingManager.h"
+#import "LHUserModel.h"
+
+@interface LHLoginService ()
+
+@property (nonatomic,strong)LHUserModel *userModel;
+
+@end
 
 @implementation LHLoginService
+
++ (instancetype)sharedInstance{
+    static id sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (instancetype)init{
+    if (self == [super init]) {
+        _userModel = [LHUserModel sharedInstance];
+    }
+    return self;
+}
+
+- (void)getVCodeWithMobileStr:(NSString *)mobileStr completed:(void (^)())completed failure:(void (^)())failure{
+    if (mobileStr) {
+        NSDictionary *params = @{@"mobile" : mobileStr};
+        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/getCode" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+            if (completed) {
+                completed();
+            }
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            if (failure) {
+                failure();
+            }
+        }];
+    }else{
+        NSLog(@"mobile or role is nil");
+    }
+}
+
+
+- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password completed:(void(^)())completed failure:(void (^)())failure{
+    NSDictionary *params = @{@"username":username,@"password":password};
+    [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/login" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"response:%@",responseObject);
+        NSDictionary *guardInfoDic = [responseObject valueForKey:@"guardInfo"];
+        NSArray *clistArray = [guardInfoDic valueForKey:@"clist"];
+        //NSSet *set = [[NSSet alloc] init];
+        NSMutableSet *set = [[NSMutableSet alloc] init];
+        for (NSDictionary *dict in clistArray) {
+            [set addObject:[dict valueForKey:@"id"]];
+            //[set setByAddingObject:[dict valueForKey:@"id"]];
+            //            NSSet *set = [[NSSet alloc] initWithObjects:[dict valueForKey:@"communityid"], nil];
+            
+        }
+//        [JPUSHService setTags:set alias:mobileStr callbackSelector:nil object:nil];
+        [_userModel setValuesForKeysWithDictionary:guardInfoDic];
+        if (completed) {
+            completed();
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure) {
+            failure();
+        }
+    }];
+}
+
+- (void)loginWithTokenCompleted:(void(^)())completed failure:(void (^)())failure{
+    if (_userModel.token) {
+        NSDictionary *params = @{@"mobile":_userModel.mobile,@"token":_userModel.token};
+        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/mobile/guard/logininbytoken" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+            NSDictionary *guardInfoDic = [responseObject valueForKey:@"guardInfo"];
+            
+            [_userModel setValuesForKeysWithDictionary:guardInfoDic];
+            if (completed) {
+                completed();
+            }
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            if (failure) {
+                failure();
+            }
+        }];
+    }else{
+        if (self.TokenLoginBlock) {
+            self.TokenLoginBlock();
+        }
+    }
+}
+
+- (void)registerNewAcountWithUserName:(NSString *)username andPassword:(NSString *)password andMoblie:(NSString *)mobile andVcode:(NSString *)vcode completed:(void(^)())completed failure:(void (^)())failure{
+    NSDictionary *params = @{@"username":username,@"password":password,@"mobile":mobile,@"veriCode":vcode};
+    [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/register" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+        if (completed) {
+            completed(task,responseObject);
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
+        }
+    }];
+}
 
 @end

@@ -7,8 +7,16 @@
 //
 
 #import "LHLoginViewController.h"
+#import "LHLoginView.h"
+#import "LHRegistViewController.h"
+#import "LHLostPassWordOneViewController.h"
 
-@interface LHLoginViewController ()
+@interface LHLoginViewController ()<LHLoginViewDelegate>
+
+@property (nonatomic,strong)UIImageView *bgImageView;
+@property (nonatomic,strong)UIImageView *iconImageView;
+@property (nonatomic,strong)UIView *mainView;
+@property (nonatomic,strong)LHLoginView *loginView;
 
 @end
 
@@ -16,7 +24,76 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.bgImageView];
+    [self.view insertSubview:self.mainView aboveSubview:self.bgImageView];
+    [self.mainView addSubview:self.loginView];
+    [self.mainView addSubview:self.iconImageView];
     // Do any additional setup after loading the view.
+}
+
+- (void)ButtonHadClickedWithTag:(NSInteger)tag{
+    switch (tag) {
+        case 30:
+        {
+            //点击登录按钮
+            NSLog(@"登录");
+        }
+            break;
+        case 31:
+        {
+            //点击注册按钮
+            NSLog(@"注册");
+            LHRegistViewController *RegistVC = [[LHRegistViewController alloc] init];
+            [self.navigationController pushViewController:RegistVC animated:YES];
+        }
+            break;
+        case 32:
+        {
+            //点击忘记密码按钮
+            NSLog(@"忘记密码");
+            LHLostPassWordOneViewController *oneVC = [[LHLostPassWordOneViewController alloc] init];
+            [self.navigationController pushViewController:oneVC animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (LHLoginView *)loginView{
+    if (!_loginView) {
+        _loginView = [[LHLoginView alloc] init];
+        _loginView.center = self.view.center;
+        _loginView.delegate = self;
+    }
+    return _loginView;
+}
+
+- (UIImageView *)bgImageView{
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kScreenSize.height)];
+        _bgImageView.image = [UIImage imageNamed:@"loginBG"];
+    }
+    return _bgImageView;
+}
+
+- (UIImageView *)iconImageView{
+    if (!_iconImageView) {
+        _iconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_logo"]];
+        _iconImageView.frame = CGRectMake(0, 0, kWidthIphone7(100), kWidthIphone7(100));
+        CGPoint center = self.view.center;
+        center.y -= kHeightIphone7(90+70);
+        _iconImageView.center = center;
+    }
+    return _iconImageView;
+}
+
+- (UIView *)mainView{
+    if (!_mainView) {
+        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kScreenSize.height)];
+        _mainView.backgroundColor = [UIColor clearColor];
+    }
+    return _mainView;
 }
 
 - (void)didReceiveMemoryWarning {

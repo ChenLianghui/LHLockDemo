@@ -13,10 +13,21 @@
 @end
 
 @implementation LHNavigationViewController
+    
++ (void)load{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.navigationBar.translucent = NO;
+    self.navigationBar.barTintColor = [UIColor blackColor];
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
+    //self.navigationBar.tintColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {

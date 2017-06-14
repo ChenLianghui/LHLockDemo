@@ -10,4 +10,7 @@
 
 @interface LHRecordCellModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *titleStr;
+@property (nonatomic,copy)NSString *timeStr;
+
 @end

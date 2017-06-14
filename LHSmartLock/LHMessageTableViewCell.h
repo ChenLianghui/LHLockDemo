@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHMessageModel.h"
 
 @interface LHMessageTableViewCell : UITableViewCell
+
+@property (nonatomic,strong)LHMessageModel *model;
+@property (nonatomic,strong)UILabel *titleLabel;
+@property (nonatomic,strong)UILabel *desTitleLabel;
+@property (nonatomic,strong)UILabel *timeLabel;
+@property (nonatomic,strong)UIView *iconView;
 
 @end

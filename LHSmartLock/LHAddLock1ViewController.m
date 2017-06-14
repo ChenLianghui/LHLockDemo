@@ -7,6 +7,8 @@
 //
 
 #import "LHAddLock1ViewController.h"
+#import "LHBaseTextfiledView.h"
+#import "LHAddLock2ViewController.h"
 
 @interface LHAddLock1ViewController ()
 
@@ -16,7 +18,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"添加设备", nil);
+    [self addTextfieldViews];
+    __weak typeof(self)weakSelf = self;
+    [self addItemWithName:NSLocalizedString(@"下一步", nil) isLeft:NO WithBlock:^{
+        [weakSelf NextAction];
+    }];
     // Do any additional setup after loading the view.
+}
+
+- (void)addTextfieldViews{
+    LHBaseTextfiledView *textfiledView = [[LHBaseTextfiledView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(10), kScreenSize.width, kBorderMargin*2+kHeightIphone7(20))];
+    textfiledView.backgroundColor = [UIColor backgroundColor];
+    textfiledView.textfield.tag = 80;
+    textfiledView.titleLabel.text = NSLocalizedString(@"添加门锁", nil);
+    textfiledView.textfield.placeholder = NSLocalizedString(@"请输入设备名称", nil);
+    [self.view addSubview:textfiledView];
+}
+
+- (void)NextAction{
+    UITextField *textfield = (UITextField *)[self.view viewWithTag:80];
+    LHAddLock2ViewController *addlock2 = [[LHAddLock2ViewController alloc] init];
+    [self.navigationController pushViewController:addlock2 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

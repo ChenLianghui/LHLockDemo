@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHGatewayModel.h"
+
 
 @interface LHSelectGatewayCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic,strong)LHGatewayModel *model;
+@property (nonatomic,strong)UIImageView *iconImageView;
+@property (nonatomic,strong)UILabel *titleLabel;
 
 @end

@@ -10,4 +10,13 @@
 
 @implementation LHBaseTableModel
 
++ (LHBaseTableModel *)initBaseModelWithIconName:(NSString *)iconName labelTitle:(NSString *)title rightTitle:(NSString *)rightStr isHasSwitch:(BOOL)isHasSwitch{
+    LHBaseTableModel *model = [[LHBaseTableModel alloc] init];
+    model.iconName = iconName;
+    model.titleStr = title;
+    model.rightStr = rightStr;
+    model.isHasSwitch = isHasSwitch;
+    return model;
+}
+
 @end
