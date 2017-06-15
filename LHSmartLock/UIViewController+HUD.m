@@ -84,7 +84,7 @@ static NSDate *createTime = nil;
 
 - (void)showSucceed:(NSString *)message complete:(MBProgressHUDCompletionBlock)block {
     [self checkCreateLoading];
-    UIImage     *tipImage = [UIImage imageNamed:@"tip_successfully"];
+    UIImage     *tipImage = [UIImage imageNamed:@"tip_success"];
     UIImageView *tipImageView = [[UIImageView alloc] initWithImage:tipImage];
     self.loadingView.HUD.minSize = CGSizeMake(kSizeFrom750(460), kSizeFrom750(250));
     [self.loadingView showWithCustomView:tipImageView label:message duration:kHUDNormalDuration complete:block];

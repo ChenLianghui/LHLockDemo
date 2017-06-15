@@ -14,6 +14,7 @@
 
 @interface LHTabBarViewController ()
 
+
 @end
 
 @implementation LHTabBarViewController
@@ -41,8 +42,8 @@
     LHNavigationViewController *manageNAV = [[LHNavigationViewController alloc] initWithRootViewController:manageVC];
     
     LHMineViewController *mineVC = [[LHMineViewController alloc] init];
-    mineVC.title = NSLocalizedString(@"我的", nil);
-    mineVC.tabBarItem.title = NSLocalizedString(@"我的", nil);
+    mineVC.title = NSLocalizedString(@"个人中心", nil);
+    mineVC.tabBarItem.title = NSLocalizedString(@"个人中心", nil);
     mineVC.tabBarItem.image = [UIImage imageNamed:@"mine"];
     mineVC.tabBarItem.selectedImage = [UIImage imageNamed:@"mine_selected"];
     LHNavigationViewController *mineNAV = [[LHNavigationViewController alloc] initWithRootViewController:mineVC];

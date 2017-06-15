@@ -32,4 +32,11 @@
     return NO;
 }
 
++ (void)callTelephoneWithString:(NSString *)mobile{
+    NSString *phone = [NSString stringWithFormat:@"telprompt://%@",mobile];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:phone]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phone]];
+    }
+}
+
 @end

@@ -21,5 +21,8 @@ typedef enum : NSUInteger {
 + (BOOL)verifyMobile:(NSString *)mobile;
 
 + (BOOL)isCurrentLanguageIsChinese;
+
+//拨打电话
++(void)callTelephoneWithString:(NSString *)mobile;
     
 @end

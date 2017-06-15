@@ -12,6 +12,10 @@
 
 @interface LHChangeLockPasswordViewController ()
 
+@property (nonatomic,strong)UITextField *textfield1;
+@property (nonatomic,strong)UITextField *textfield2;
+@property (nonatomic,strong)UITextField *textfield3;
+
 @end
 
 @implementation LHChangeLockPasswordViewController
@@ -19,6 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"修改密码", nil);
+    __weak typeof(self)weakSelf = self;
+    [self addItemWithName:NSLocalizedString(@"确定", nil) isLeft:NO WithBlock:^{
+        [weakSelf commitAction];
+    }];
+    _textfield1 = [UITextField new];
+    _textfield2 = [UITextField new];
+    _textfield3 = [UITextField new];
     [self createTextFiledViews];
     // Do any additional setup after loading the view.
 }
@@ -31,12 +42,42 @@
         textfiledView.titleLabel.text = titleArray[i];
         textfiledView.textfield.placeholder = placeholderArray[i];
         textfiledView.textfield.keyboardType = UIKeyboardTypeNumberPad;
-        textfiledView.textfield.tag = 60+i;
+        textfiledView.textfield.secureTextEntry = YES;
+        if (i == 0) {
+            _textfield1 = textfiledView.textfield;
+        }
+        if (i == 1) {
+            _textfield2 = textfiledView.textfield;
+        }
+        if (i == 2) {
+            _textfield3 = textfiledView.textfield;
+        }
         [self.view addSubview:textfiledView];
     }
 }
 
-
+- (void)commitAction{
+    
+    if (![LHUtils isEmptyStr:_textfield1.text]) {
+        if (![LHUtils isEmptyStr:_textfield2.text]) {
+            if (![LHUtils isEmptyStr:_textfield3.text]) {
+                if ([_textfield2.text isEqualToString:_textfield3.text]) {
+                    [self showSucceed:NSLocalizedString(@"修改密码成功", nil) complete:^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                }else{
+                    [self showFailed:NSLocalizedString(@"两次密码输入不一致", nil)];
+                }
+            } else {
+                [self showFailed:NSLocalizedString(@"请确认新密码", nil)];
+            }
+        }else{
+            [self showFailed:NSLocalizedString(@"请输入新密码", nil)];
+        }
+    }else{
+        [self showFailed:NSLocalizedString(@"请输入原密码", nil)];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

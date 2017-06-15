@@ -19,6 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self createSubviews];
+        self.backgroundColor = [UIColor backgroundColor];
     }
     return self;
 }

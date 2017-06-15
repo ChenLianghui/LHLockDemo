@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E02C8F21EF0DC02008AEE45 /* LHTemporaryPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E02C8F11EF0DC02008AEE45 /* LHTemporaryPasswordViewController.m */; };
 		0E0CDF311EEFB8FA003EE128 /* LHChangeLockPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0CDF301EEFB8FA003EE128 /* LHChangeLockPasswordViewController.m */; };
 		0E0CDF341EEFBB7F003EE128 /* LHNumberKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0CDF331EEFBB7F003EE128 /* LHNumberKeyBoard.m */; };
 		0E2253A91EDE5FBD003B6AE4 /* JXTAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2253A41EDE5FBD003B6AE4 /* JXTAlertController.m */; };
@@ -73,6 +74,11 @@
 		0EFAA0781EE64A5E0054AE47 /* UIButton+CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA0771EE64A5E0054AE47 /* UIButton+CountDown.m */; };
 		0EFAA07C1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA07B1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m */; };
 		0EFAA07F1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA07E1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m */; };
+		0EFE4B941EF22A9F00842E34 /* LHAuthorUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B931EF22A9F00842E34 /* LHAuthorUserViewController.m */; };
+		0EFE4B981EF22F0600842E34 /* LHAddUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B971EF22F0600842E34 /* LHAddUserViewController.m */; };
+		0EFE4B9C1EF23B9300842E34 /* LHUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B9B1EF23B9300842E34 /* LHUserDetailViewController.m */; };
+		0EFE4B9F1EF283B600842E34 /* LHChangeLockNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B9E1EF283B600842E34 /* LHChangeLockNameViewController.m */; };
+		0EFE4BA31EF28EE300842E34 /* LHMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4BA21EF28EE300842E34 /* LHMineTableViewCell.m */; };
 		53D005C3752109EEF22E4215 /* libPods-LHSmartLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A485E8006EB9A721613487F6 /* libPods-LHSmartLock.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +101,8 @@
 
 /* Begin PBXFileReference section */
 		0C1CC3FB26D9286A0559D0D9 /* Pods-LHSmartLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LHSmartLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LHSmartLock/Pods-LHSmartLock.debug.xcconfig"; sourceTree = "<group>"; };
+		0E02C8F01EF0DC02008AEE45 /* LHTemporaryPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHTemporaryPasswordViewController.h; sourceTree = "<group>"; };
+		0E02C8F11EF0DC02008AEE45 /* LHTemporaryPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHTemporaryPasswordViewController.m; sourceTree = "<group>"; };
 		0E0CDF2F1EEFB8FA003EE128 /* LHChangeLockPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHChangeLockPasswordViewController.h; sourceTree = "<group>"; };
 		0E0CDF301EEFB8FA003EE128 /* LHChangeLockPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHChangeLockPasswordViewController.m; sourceTree = "<group>"; };
 		0E0CDF321EEFBB7F003EE128 /* LHNumberKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHNumberKeyBoard.h; sourceTree = "<group>"; };
@@ -233,6 +241,16 @@
 		0EFAA07B1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHLostPassWordOneViewController.m; sourceTree = "<group>"; };
 		0EFAA07D1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHLostPassWordTwoViewController.h; sourceTree = "<group>"; };
 		0EFAA07E1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHLostPassWordTwoViewController.m; sourceTree = "<group>"; };
+		0EFE4B921EF22A9F00842E34 /* LHAuthorUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAuthorUserViewController.h; sourceTree = "<group>"; };
+		0EFE4B931EF22A9F00842E34 /* LHAuthorUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAuthorUserViewController.m; sourceTree = "<group>"; };
+		0EFE4B961EF22F0600842E34 /* LHAddUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAddUserViewController.h; sourceTree = "<group>"; };
+		0EFE4B971EF22F0600842E34 /* LHAddUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAddUserViewController.m; sourceTree = "<group>"; };
+		0EFE4B9A1EF23B9300842E34 /* LHUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHUserDetailViewController.h; sourceTree = "<group>"; };
+		0EFE4B9B1EF23B9300842E34 /* LHUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHUserDetailViewController.m; sourceTree = "<group>"; };
+		0EFE4B9D1EF283B600842E34 /* LHChangeLockNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHChangeLockNameViewController.h; sourceTree = "<group>"; };
+		0EFE4B9E1EF283B600842E34 /* LHChangeLockNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHChangeLockNameViewController.m; sourceTree = "<group>"; };
+		0EFE4BA11EF28EE300842E34 /* LHMineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMineTableViewCell.h; sourceTree = "<group>"; };
+		0EFE4BA21EF28EE300842E34 /* LHMineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHMineTableViewCell.m; sourceTree = "<group>"; };
 		693E3AD82B4E5B8539DD2BC5 /* Pods-LHSmartLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LHSmartLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-LHSmartLock/Pods-LHSmartLock.release.xcconfig"; sourceTree = "<group>"; };
 		A485E8006EB9A721613487F6 /* libPods-LHSmartLock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LHSmartLock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -373,6 +391,9 @@
 			children = (
 				0E68C7D21EEF857E002F98AA /* LHLockDetailViewController.h */,
 				0E68C7D31EEF857E002F98AA /* LHLockDetailViewController.m */,
+				0EFE4BA01EF283BC00842E34 /* 修改设备名 */,
+				0EFE4B911EF22A7A00842E34 /* 授权用户 */,
+				0EA5568C1EF0DB300071C839 /* 临时密码 */,
 				0E0CDF2E1EEFB8D5003EE128 /* 修改密码 */,
 			);
 			name = "锁详情";
@@ -514,6 +535,15 @@
 				0E9C5A1F1EEE728D00EB0426 /* LHMessageModel.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		0EA5568C1EF0DB300071C839 /* 临时密码 */ = {
+			isa = PBXGroup;
+			children = (
+				0E02C8F01EF0DC02008AEE45 /* LHTemporaryPasswordViewController.h */,
+				0E02C8F11EF0DC02008AEE45 /* LHTemporaryPasswordViewController.m */,
+			);
+			name = "临时密码";
 			sourceTree = "<group>";
 		};
 		0EEAD9F11ED42BB300F92E33 = {
@@ -672,6 +702,8 @@
 			children = (
 				0EEADA661ED42F5D00F92E33 /* LHMineViewController.h */,
 				0EEADA671ED42F5D00F92E33 /* LHMineViewController.m */,
+				0EFE4BA11EF28EE300842E34 /* LHMineTableViewCell.h */,
+				0EFE4BA21EF28EE300842E34 /* LHMineTableViewCell.m */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -772,6 +804,44 @@
 				0EFAA07E1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m */,
 			);
 			name = "忘记密码";
+			sourceTree = "<group>";
+		};
+		0EFE4B911EF22A7A00842E34 /* 授权用户 */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE4B991EF23B7B00842E34 /* 用户详情 */,
+				0EFE4B951EF22EF500842E34 /* 添加用户 */,
+				0EFE4B921EF22A9F00842E34 /* LHAuthorUserViewController.h */,
+				0EFE4B931EF22A9F00842E34 /* LHAuthorUserViewController.m */,
+			);
+			name = "授权用户";
+			sourceTree = "<group>";
+		};
+		0EFE4B951EF22EF500842E34 /* 添加用户 */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE4B961EF22F0600842E34 /* LHAddUserViewController.h */,
+				0EFE4B971EF22F0600842E34 /* LHAddUserViewController.m */,
+			);
+			name = "添加用户";
+			sourceTree = "<group>";
+		};
+		0EFE4B991EF23B7B00842E34 /* 用户详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE4B9A1EF23B9300842E34 /* LHUserDetailViewController.h */,
+				0EFE4B9B1EF23B9300842E34 /* LHUserDetailViewController.m */,
+			);
+			name = "用户详情";
+			sourceTree = "<group>";
+		};
+		0EFE4BA01EF283BC00842E34 /* 修改设备名 */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE4B9D1EF283B600842E34 /* LHChangeLockNameViewController.h */,
+				0EFE4B9E1EF283B600842E34 /* LHChangeLockNameViewController.m */,
+			);
+			name = "修改设备名";
 			sourceTree = "<group>";
 		};
 		413F348D621BAFC357740952 /* Pods */ = {
@@ -1007,6 +1077,7 @@
 				0EEADA021ED42BB300F92E33 /* AppDelegate.m in Sources */,
 				0EFAA07C1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m in Sources */,
 				0E8E06E51EE4F24200A70EB5 /* LHLoginView.m in Sources */,
+				0E02C8F21EF0DC02008AEE45 /* LHTemporaryPasswordViewController.m in Sources */,
 				0EEADA4E1ED42E7500F92E33 /* UIViewController+HUD.m in Sources */,
 				0EEADA4B1ED42E7500F92E33 /* UIFont+App.m in Sources */,
 				0E60472C1EE931640091C10C /* LHHomeHeaderView.m in Sources */,
@@ -1016,6 +1087,7 @@
 				0E68C7CC1EEF80D0002F98AA /* LHGatewayListViewController.m in Sources */,
 				0E9C5A1A1EEE6A0600EB0426 /* LHRecordCellModel.m in Sources */,
 				0E68C7D41EEF857E002F98AA /* LHLockDetailViewController.m in Sources */,
+				0EFE4B981EF22F0600842E34 /* LHAddUserViewController.m in Sources */,
 				0E2253AA1EDE5FBD003B6AE4 /* JXTAlertView.m in Sources */,
 				0E6047141EE7F06B0091C10C /* LHSelectGatewayCollectionViewCell.m in Sources */,
 				0EEADA6B1ED42F6500F92E33 /* LHTabBarViewController.m in Sources */,
@@ -1029,6 +1101,8 @@
 				0E9C5A0A1EEE474F00EB0426 /* LHRecordListViewController.m in Sources */,
 				0EEADA621ED42F4B00F92E33 /* LHHomeViewController.m in Sources */,
 				0E9C5A031EEE38F400EB0426 /* LHAddLock1ViewController.m in Sources */,
+				0EFE4B941EF22A9F00842E34 /* LHAuthorUserViewController.m in Sources */,
+				0EFE4BA31EF28EE300842E34 /* LHMineTableViewCell.m in Sources */,
 				0E6047221EE8E36E0091C10C /* LHUserModel.m in Sources */,
 				0E0CDF341EEFBB7F003EE128 /* LHNumberKeyBoard.m in Sources */,
 				0EFAA07F1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m in Sources */,
@@ -1037,8 +1111,10 @@
 				0EEADA5C1ED42F2E00F92E33 /* BKLoadingView.m in Sources */,
 				0E60470E1EE798900091C10C /* LHBaseModel.m in Sources */,
 				0E68C7D01EEF83C6002F98AA /* LHLockListViewController.m in Sources */,
+				0EFE4B9F1EF283B600842E34 /* LHChangeLockNameViewController.m in Sources */,
 				0EEADA471ED42E7500F92E33 /* NSObject+Swizzle.m in Sources */,
 				0EEADA651ED42F5500F92E33 /* LHManageViewController.m in Sources */,
+				0EFE4B9C1EF23B9300842E34 /* LHUserDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

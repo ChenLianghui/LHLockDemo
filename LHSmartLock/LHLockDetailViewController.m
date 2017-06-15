@@ -10,6 +10,9 @@
 #import "LHBaseTableViewCell.h"
 #import "LHBaseTableModel.h"
 #import "LHChangeLockPasswordViewController.h"
+#import "LHTemporaryPasswordViewController.h"
+#import "LHAuthorUserViewController.h"
+#import "LHChangeLockNameViewController.h"
 
 @interface LHLockDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -80,6 +83,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         switch (indexPath.row) {
+            case 0:
+            {
+                LHChangeLockNameViewController *changeLockVC = [[LHChangeLockNameViewController alloc] init];
+                [self.navigationController pushViewController:changeLockVC animated:YES];
+            }
+                break;
             case 1:
             {
                 LHChangeLockPasswordViewController *changePassword = [[LHChangeLockPasswordViewController alloc] init];
@@ -91,7 +100,15 @@
                 break;
         }
     }
-    
+    if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            LHTemporaryPasswordViewController *temporaryVC = [[LHTemporaryPasswordViewController alloc] init];
+            [self.navigationController pushViewController:temporaryVC animated:YES];
+        }else{
+            LHAuthorUserViewController *authorVC = [[LHAuthorUserViewController alloc] init];
+            [self.navigationController pushViewController:authorVC animated:YES];
+        }
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

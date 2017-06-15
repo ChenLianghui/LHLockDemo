@@ -7,7 +7,7 @@
 */
 "首页" = "Main";
 "管理" = "Manage";
-"我的" = "Mine";
+"个人中心" = "User center";
 
 //login
 "登录" = "Login";
@@ -51,7 +51,22 @@
 "自动报警" = "Automatic alarm";
 "临时密码" = "Temporary password";
 "授权用户" = "Authorized users";
-
+"修改密码成功" = "Modify successfully";
+"有效" = "valid";
+"临时密码仅能使用一次，使用之后自动失效" = "Temporary password can only be used once, null and void automatically after use";
+"刷新" = "Refresh";
+"添加" = "Add";
+"添加用户" = "Add User";
+"账户名称" = "UserName";
+"请输入账户名称" = "Please enter the username";
+"保存成功" = "Save successfully";
+"用户详情" = "User detail";
+"授权时间" = "Authorized time";
+"删除成功" = "Delete successfully";
+"删除用户" = "Delete user";
+"修改设备名" = "Change EquipmentName";
+"保存" = "Save";
+"设备名" = "EquipmentName";
 //首页
 "添加密码锁" = "Add Lock";
 "添加网关" = "Add Gateway";
@@ -72,3 +87,6 @@
 "请再次输入钥匙密码" = "Please enter again the password";
 "操作记录" = "Operation records";
 "消息提醒" = "Message records";
+//个人中心
+"账号" = "UserName";
+"客服电话" = "Customer-service";

@@ -1,29 +1,32 @@
 //
-//  LHMineViewController.m
-//  APPBaseDemo
+//  LHAuthorUserViewController.m
+//  LHSmartLock
 //
-//  Created by 陈良辉 on 2017/5/23.
+//  Created by 陈良辉 on 2017/6/15.
 //  Copyright © 2017年 陈良辉. All rights reserved.
 //
 
-#import "LHMineViewController.h"
-#import "LHUserModel.h"
-#import "LHMineTableViewCell.h"
+#import "LHAuthorUserViewController.h"
+#import "LHUserDetailViewController.h"
+#import "LHAddUserViewController.h"
 
-#define kPhoneNumber @"17606547695"
-@interface LHMineViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LHAuthorUserViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tableview;
-@property (nonatomic,copy)NSArray *dataArray;
+@property (nonatomic,strong)NSMutableArray *dataArray;
 
 @end
 
-@implementation LHMineViewController
+@implementation LHAuthorUserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addImageWithName:@"" isLeft:YES WithBlock:nil];
+    self.title = NSLocalizedString(@"授权用户", nil);
     [self.view addSubview:self.tableview];
+    __weak typeof(self)weakSelf = self;
+    [self addItemWithName:NSLocalizedString(@"添加", nil) isLeft:NO WithBlock:^{
+        [weakSelf.navigationController pushViewController:[[LHAddUserViewController alloc] init] animated:YES];
+    }];
     // Do any additional setup after loading the view.
 }
 
@@ -32,30 +35,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LHMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LHMineTableViewCell"];
+    static NSString *cellId = @"cellid";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
-        cell = [[LHMineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LHMineTableViewCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
-    cell.titleLabel.text = self.dataArray[indexPath.row];
-    if (indexPath.row == 0) {
-        cell.rightLabel.text = [LHUserModel sharedInstance].name;
-    }else{
-        cell.rightLabel.text = kPhoneNumber;
-    }
+    cell.textLabel.text = self.dataArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
-        case 1:
-        {
-            [LHUtils callTelephoneWithString:kPhoneNumber];
-        }
-            break;
-            
-        default:
-            break;
-    }
+    LHUserDetailViewController *detailVC = [[LHUserDetailViewController alloc] init];
+    detailVC.userName = self.dataArray[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (UITableView *)tableview{
@@ -65,18 +57,16 @@
         _tableview.dataSource = self;
         _tableview.rowHeight = kHeightIphone7(40);
         _tableview.tableFooterView = [UIView new];
-        [_tableview registerClass:[LHMineTableViewCell class] forCellReuseIdentifier:@"LHMineTableViewCell"];
     }
     return _tableview;
 }
 
-- (NSArray *)dataArray{
+- (NSMutableArray *)dataArray{
     if (!_dataArray) {
-        _dataArray = @[NSLocalizedString(@"账号", nil),NSLocalizedString(@"客服电话", nil)];
+        _dataArray = [[NSMutableArray alloc] initWithObjects:@"张三",@"李四", nil];
     }
     return _dataArray;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
