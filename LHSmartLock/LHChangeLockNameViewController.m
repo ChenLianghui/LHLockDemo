@@ -23,6 +23,7 @@
     [self addItemWithName:NSLocalizedString(@"保存", nil) isLeft:NO WithBlock:^{
         [weakSelf SaveAction];
     }];
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
 }
 

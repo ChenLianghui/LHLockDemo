@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"修改密码", nil);
+    self.view.backgroundColor = [UIColor whiteColor];
     __weak typeof(self)weakSelf = self;
     [self addItemWithName:NSLocalizedString(@"确定", nil) isLeft:NO WithBlock:^{
         [weakSelf commitAction];

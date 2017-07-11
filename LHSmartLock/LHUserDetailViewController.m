@@ -68,6 +68,12 @@
             make.height.equalTo(kHeightIphone7(20));
         }];
         
+        if (![LHUtils isCurrentLanguageIsChinese]) {
+            [titleLabel1 updateConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(kWidthIphone7(120));
+            }];
+        }
+        
         [_detailLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(titleLabel1.right).offset(kWidthIphone7(20));
             make.top.equalTo(titleLabel1.top);
@@ -120,7 +126,7 @@
 }
 
 - (void)deleteButtonClicked:(UIButton *)button{
-    [self showSucceed:NSLocalizedString(@"删除成功!", nil) complete:^{
+    [self showSucceed:NSLocalizedString(@"删除成功", nil) complete:^{
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

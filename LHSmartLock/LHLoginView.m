@@ -7,13 +7,10 @@
 //
 
 #import "LHLoginView.h"
-#import "LHTextField.h"
 #import "JXTAlertManagerHeader.h"
 
 @interface LHLoginView ()
 
-@property (nonatomic,strong)LHTextField *userTextField;
-@property (nonatomic,strong)LHTextField *passwordTextField;
 @property (nonatomic,strong)UIButton *loginButton;
 @property (nonatomic,strong)UIButton *registButton;
 @property (nonatomic,strong)UIButton *lostPWButton;
@@ -46,6 +43,9 @@
     _userTextField.layer.cornerRadius = kHeightIphone7(20);
     _userTextField.layer.borderColor = [UIColor whiteColor].CGColor;
     _userTextField.layer.borderWidth = 1.0;
+    if (![LHUtils isEmptyStr:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentUserName]]) {
+        _userTextField.text = [[NSUserDefaults standardUserDefaults] valueForKey:key_currentUserName];
+    }
     [self addSubview:_userTextField];
     
     _passwordTextField = [[LHTextField alloc] init];
@@ -85,7 +85,7 @@
     
     _lostPWButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_lostPWButton setTitle:NSLocalizedString(@"忘记密码", nil) forState:UIControlStateNormal];
-    _lostPWButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    _lostPWButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     _lostPWButton.titleLabel.font = [UIFont appFontFour];
     _lostPWButton.tag = 32;
     [_lostPWButton addTarget:self action:@selector(ButtonClicked:) forControlEvents:UIControlEventTouchUpInside];

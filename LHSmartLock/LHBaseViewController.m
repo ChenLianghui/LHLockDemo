@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     __weak typeof(self)weakSelf = self;
     if (self.navigationController.topViewController == self) {

@@ -8,12 +8,18 @@
 
 #import "LHRegistViewController.h"
 #import "UIButton+CountDown.h"
+#import "LHLoginService.h"
 
 @interface LHRegistViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,copy)NSArray *titleArray;
 @property (nonatomic,copy)NSArray *placeholderArray;
 @property (nonatomic,strong)UIButton *commitButton;
+@property (nonatomic,strong)UITextField *userTextField;
+@property (nonatomic,strong)UITextField *passwordTextField;
+@property (nonatomic,strong)UITextField *againPasswordTF;
+@property (nonatomic,strong)UITextField *mobileTextField;
+@property (nonatomic,strong)UITextField *vcodeTextField;
 
 @end
 
@@ -22,6 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"注册账号", nil);
+    _userTextField = [UITextField new];
+    _passwordTextField = [UITextField new];
+    _againPasswordTF = [UITextField new];
+    _mobileTextField = [UITextField new];
+    _vcodeTextField = [UITextField new];
     [self createSubViews];
     [self.view addSubview:self.commitButton];
     // Do any additional setup after loading the view.
@@ -41,16 +52,43 @@
         inputTF.placeholder = self.placeholderArray[i];
         inputTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         inputTF.delegate = self;
-        inputTF.tag = 40+i;
+//        inputTF.tag = 40+i;
         inputTF.font = [UIFont appFontThree];
-        if (i == 1 || i == 2) {
-            inputTF.secureTextEntry = YES;
-        }
-        if (i == 3 || i == 4) {
-            inputTF.keyboardType = UIKeyboardTypeNumberPad;
-        }
         inputTF.autocorrectionType = UITextAutocorrectionTypeNo;
         [view addSubview:inputTF];
+        switch (i) {
+            case 0:
+            {
+                _userTextField = inputTF;
+            }
+                break;
+            case 1:
+            {
+                _passwordTextField = inputTF;
+                _passwordTextField.secureTextEntry = YES;
+            }
+                break;
+            case 2:
+            {
+                _againPasswordTF = inputTF;
+                _againPasswordTF.secureTextEntry = YES;
+            }
+                break;
+            case 3:
+            {
+                _mobileTextField = inputTF;
+                _mobileTextField.keyboardType = UIKeyboardTypeNumberPad;
+            }
+                break;
+            case 4:
+            {
+                _vcodeTextField = inputTF;
+                _vcodeTextField.keyboardType = UIKeyboardTypeNumberPad;
+            }
+                break;
+            default:
+                break;
+        }
         
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(kContentMargin);
@@ -92,11 +130,17 @@
 }
 
 - (void)verificationButtonClicked:(UIButton *)button{
-    UITextField *mobileTF = (UITextField *)[self.view viewWithTag:43];
-    if ([LHUtils isEmptyStr:mobileTF.text]) {
+    if ([LHUtils isEmptyStr:_mobileTextField.text]) {
         [self showMessage:NSLocalizedString(@"请输入手机号", nil)];
         return;
+    }else{
+        [[LHLoginService sharedInstance] getVCodeWithMobileStr:_mobileTextField.text completed:^{
+            
+        } failure:^{
+            
+        }];
     }
+
     [button countDownFromTime:10 title:NSLocalizedString(@"重新获取", nil) unitTitle:@"s" mainColor:[UIColor clearColor] countColor:[UIColor clearColor]];
     //以下为获取验证码代码
 }
@@ -104,30 +148,28 @@
 #pragma mark - 点击确认按钮
 
 - (void)CommitButtonClicked:(UIButton *)button{
-    for (int i = 0; i < self.titleArray.count; i++) {
-        UITextField *textField = (UITextField *)[self.view viewWithTag:40+i];
-        if ([LHUtils isEmptyStr:textField.text]) {
-            switch (i) {
-                case 0:
-                    [self showMessage:NSLocalizedString(@"请输入用户名", nil)];
-                    break;
-                case 1:
-                    [self showMessage:NSLocalizedString(@"请输入密码", nil)];
-                    break;
-                case 2:
-                    [self showMessage:NSLocalizedString(@"请确认密码", nil)];
-                    break;
-                case 3:
-                    [self showMessage:NSLocalizedString(@"请输入手机号", nil)];
-                    break;
-                case 4:
-                    [self showMessage:NSLocalizedString(@"请输入验证码", nil)];
-                    break;
-                default:
-                    break;
-            }
-            return;
-        }
+    if ([LHUtils isEmptyStr:_userTextField.text]) {
+        [self showFailed:NSLocalizedString(@"请输入用户名", nil)];
+    }else if ([LHUtils isEmptyStr:_passwordTextField.text]){
+        [self showFailed:NSLocalizedString(@"请输入密码", nil)];
+    }else if ([LHUtils isEmptyStr:_againPasswordTF.text]){
+        [self showFailed:NSLocalizedString(@"请确认密码", nil)];
+    }else if ([LHUtils isEmptyStr:_mobileTextField.text]){
+        [self showFailed:NSLocalizedString(@"请输入手机号", nil)];
+    }else if ([LHUtils isEmptyStr:_vcodeTextField.text]){
+        [self showFailed:NSLocalizedString(@"请输入验证码", nil)];
+    }else if (![_passwordTextField.text isEqualToString:_againPasswordTF.text]){
+        [self showFailed:NSLocalizedString(@"两次密码输入不一致", nil)];
+    }else{
+        [[LHLoginService sharedInstance] registerNewAcountWithUserName:_userTextField.text andPassword:_passwordTextField.text andMoblie:_mobileTextField.text andVcode:_vcodeTextField.text completed:^(NSURLSessionTask *task, id responseObject) {
+            NSLog(@"responseObject:%@",responseObject);
+            __weak typeof(self)weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            
+        }];
     }
 }
 

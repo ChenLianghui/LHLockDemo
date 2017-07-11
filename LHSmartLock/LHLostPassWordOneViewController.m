@@ -10,6 +10,7 @@
 #import "LHLostPassWordTwoViewController.h"
 #import "UIButton+CountDown.h"
 
+
 @interface LHLostPassWordOneViewController ()
 
 @property (nonatomic,copy)NSArray *titleArray;
@@ -112,6 +113,7 @@
     [self.navigationController pushViewController:twoVC animated:YES];
 }
 
+#pragma mark - 获取验证码
 - (void)verificationButtonClicked:(UIButton *)button{
     UITextField *mobileTF = (UITextField *)[self.view viewWithTag:60];
     if ([LHUtils isEmptyStr:mobileTF.text]) {

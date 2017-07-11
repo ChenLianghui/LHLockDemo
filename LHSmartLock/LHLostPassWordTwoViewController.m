@@ -75,7 +75,7 @@
         if ([LHUtils isEmptyStr:textField.text]) {
             switch (i) {
                 case 0:
-                    [self showMessage:NSLocalizedString(@"请输新密码", nil)];
+                    [self showMessage:NSLocalizedString(@"请输入新密码", nil)];
                     break;
                 case 1:
                     [self showMessage:NSLocalizedString(@"请确认密码", nil)];

@@ -10,7 +10,7 @@
 
 @interface LHUserModel : LHBaseModel
 
-@property (nonatomic,copy)NSString *name;
+@property (nonatomic,copy)NSString *username;
 @property (nonatomic,copy) NSString * mobile;
 @property (nonatomic,copy) NSString * _id;
 @property (nonatomic,copy) NSString * token;

@@ -19,11 +19,11 @@
     return sharedInstance;
 }
 
-- (void)setName:(NSString *)name{
-    [[NSUserDefaults standardUserDefaults] setValue:name forKey:key_userName];
+- (void)setUsername:(NSString *)username{
+    [[NSUserDefaults standardUserDefaults] setValue:username forKey:key_userName];
 }
 
-- (NSString *)name{
+- (NSString *)username{
     return [[NSUserDefaults standardUserDefaults] valueForKey:key_userName];
 }
 

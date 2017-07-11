@@ -35,7 +35,7 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(kBorderMargin);
-        make.width.equalTo(kWidthIphone7(100));
+        make.width.equalTo(kWidthIphone7(150));
         make.top.equalTo(kHeightIphone7(10));
         make.height.equalTo(kHeightIphone7(20));
     }];

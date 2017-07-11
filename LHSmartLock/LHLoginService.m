@@ -52,45 +52,39 @@
 }
 
 
-- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password completed:(void(^)())completed failure:(void (^)())failure{
+- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
     NSDictionary *params = @{@"username":username,@"password":password};
     [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/login" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"response:%@",responseObject);
-        NSDictionary *guardInfoDic = [responseObject valueForKey:@"guardInfo"];
-        NSArray *clistArray = [guardInfoDic valueForKey:@"clist"];
-        //NSSet *set = [[NSSet alloc] init];
-        NSMutableSet *set = [[NSMutableSet alloc] init];
-        for (NSDictionary *dict in clistArray) {
-            [set addObject:[dict valueForKey:@"id"]];
-            //[set setByAddingObject:[dict valueForKey:@"id"]];
-            //            NSSet *set = [[NSSet alloc] initWithObjects:[dict valueForKey:@"communityid"], nil];
-            
-        }
+        NSDictionary *dataDic = [responseObject valueForKey:@"data"];
 //        [JPUSHService setTags:set alias:mobileStr callbackSelector:nil object:nil];
-        [_userModel setValuesForKeysWithDictionary:guardInfoDic];
+        [_userModel setValuesForKeysWithDictionary:dataDic];
+        if ([LHUtils isEmptyStr:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentUserName]]) {
+            [[NSUserDefaults standardUserDefaults]setValue:username forKey:key_currentUserName];
+        }
         if (completed) {
-            completed();
+            completed(task,responseObject);
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         if (failure) {
-            failure();
+            failure(operation,error);
         }
     }];
 }
 
-- (void)loginWithTokenCompleted:(void(^)())completed failure:(void (^)())failure{
+- (void)loginWithTokenCompleted:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
     if (_userModel.token) {
-        NSDictionary *params = @{@"mobile":_userModel.mobile,@"token":_userModel.token};
-        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/mobile/guard/logininbytoken" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
-            NSDictionary *guardInfoDic = [responseObject valueForKey:@"guardInfo"];
-            
-            [_userModel setValuesForKeysWithDictionary:guardInfoDic];
+        NSDictionary *params = @{@"username":_userModel.username,@"token":_userModel.token};
+        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/account/tokenLogin" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+            NSDictionary *dataDic = [responseObject valueForKey:@"data"];
+            //        [JPUSHService setTags:set alias:mobileStr callbackSelector:nil object:nil];
+            [_userModel setValuesForKeysWithDictionary:dataDic];
             if (completed) {
-                completed();
+                completed(task,responseObject);
             }
         } failure:^(NSURLSessionTask *operation, NSError *error) {
             if (failure) {
-                failure();
+                failure(operation,error);
             }
         }];
     }else{
@@ -100,10 +94,11 @@
     }
 }
 
-- (void)registerNewAcountWithUserName:(NSString *)username andPassword:(NSString *)password andMoblie:(NSString *)mobile andVcode:(NSString *)vcode completed:(void(^)())completed failure:(void (^)())failure{
+- (void)registerNewAcountWithUserName:(NSString *)username andPassword:(NSString *)password andMoblie:(NSString *)mobile andVcode:(NSString *)vcode completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
     NSDictionary *params = @{@"username":username,@"password":password,@"mobile":mobile,@"veriCode":vcode};
     [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/register" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
         if (completed) {
+            [[NSUserDefaults standardUserDefaults] setValue:username forKey:key_currentUserName];
             completed(task,responseObject);
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {

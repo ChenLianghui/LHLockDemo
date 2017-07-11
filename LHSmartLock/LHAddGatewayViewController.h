@@ -10,4 +10,7 @@
 
 @interface LHAddGatewayViewController : LHBaseViewController
 
+@property (nonatomic,copy)NSString *ssid;
+@property (nonatomic,copy)NSString *bssid;
+
 @end

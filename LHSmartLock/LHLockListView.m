@@ -72,7 +72,8 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.lockArray.count != 0 ? self.lockArray.count : 1;
+//    return self.lockArray.count != 0 ? self.lockArray.count : 1;
+    return self.lockArray.count+1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -81,11 +82,14 @@
     
     if (self.lockArray.count == 0) {
         cell.isEmpty = YES;
+    }else if(self.lockArray.count == indexPath.row){
+        cell.isEmpty = YES;
+        
     }else{
         LHLockModel *model = self.lockArray[indexPath.item];
         cell.model = model;
         if (_selectIndexPath == indexPath) {
-//            cell.contentView.backgroundColor = [UIColor appThemeColor];
+            //            cell.contentView.backgroundColor = [UIColor appThemeColor];
             cell.isSelected = YES;
         }else{
             cell.isSelected = NO;
@@ -98,7 +102,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(ListViewDidTapItemWithIndex:)]) {
         [self.delegate ListViewDidTapItemWithIndex:indexPath.item];
     }
-    if (self.lockArray.count == 0) {
+    if (self.lockArray.count == 0 || self.lockArray.count == indexPath.row) {
         return;
     }
     LHSelectLockCollectionViewCell *cell = (LHSelectLockCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];

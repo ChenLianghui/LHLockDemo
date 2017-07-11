@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LHBaseTableModel.h"
+#import "LHGatewayModel.h"
 
 //typedef enum : NSUInteger {
 //    LHBaseTableViewCellStyleNomal=0,//有icon,title,右箭头
@@ -23,6 +24,7 @@
 @property (nonatomic,strong)UIImageView *arrowImageView;
 @property (nonatomic,strong)UISwitch *ASwitch;
 @property (nonatomic,strong)LHBaseTableModel *model;
+@property (nonatomic,strong)LHGatewayModel *gatewayModel;
 //@property (nonatomic,assign)LHBaseTableViewCellStyle style;
 @property (nonatomic,strong)UILabel *rightLabel;
 

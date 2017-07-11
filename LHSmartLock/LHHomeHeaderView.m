@@ -56,12 +56,12 @@
     if (self.gatewayArray.count == 0) {
         return 1;
     }
-    return self.gatewayArray.count;
+    return self.gatewayArray.count+1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LHSelectGatewayCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGatewayCellId forIndexPath:indexPath];
-    if (self.gatewayArray.count == 0) {
+    if (self.gatewayArray.count == 0 || indexPath.row == self.gatewayArray.count) {
         cell.iconImageView.image = [UIImage imageNamed:@"gateway_close"];
         cell.titleLabel.text = NSLocalizedString(@"添加网关", nil);
         cell.titleLabel.textColor = [UIColor grayFontColor];
@@ -72,7 +72,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.gatewayArray.count == 0) {
+    if (self.gatewayArray.count == 0 || indexPath.row == self.gatewayArray.count) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(hadClickedTheEmptyGateway)]) {
             [self.delegate hadClickedTheEmptyGateway];
         }
@@ -80,7 +80,7 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if (self.gatewayArray.count > 0) {
+    if (self.gatewayArray.count > 0 ) {
         NSInteger index = scrollView.contentOffset.x/scrollView.bounds.size.width;
         if (_pageControl.currentPage != index) {
             [_pageControl setCurrentPage:index];
@@ -96,7 +96,7 @@
     [self.collectionView reloadData];
     [_pageControl removeFromSuperview];
     _pageControl = nil;
-    if (self.gatewayArray.count > 1) {
+    if (self.gatewayArray.count >= 1) {
         [self insertSubview:self.pageControl aboveSubview:_collectionView];
     }
 }
@@ -105,7 +105,7 @@
     if (!_pageControl) {
         _pageControl = [[UIPageControl alloc] init];
         _pageControl.frame = CGRectMake(0, self.bounds.size.height-40, self.bounds.size.width, 20);
-        _pageControl.numberOfPages = self.gatewayArray.count;
+        _pageControl.numberOfPages = self.gatewayArray.count+1;
         CGPoint offset = _collectionView.contentOffset;
         [_pageControl setCurrentPage:offset.x/_collectionView.bounds.size.width];
         _pageControl.pageIndicatorTintColor = [UIColor grayLineColor];

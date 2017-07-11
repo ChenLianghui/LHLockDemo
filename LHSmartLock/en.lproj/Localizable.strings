@@ -15,6 +15,7 @@
 "忘记密码" = "Forget password";
 "请输入用户名" = "Enter your user name";
 "请输入密码" = "Enter your password";
+"登录成功" = "Login successfully!";
 
 //register
 "注册账号" = "Register account";
@@ -67,6 +68,8 @@
 "修改设备名" = "Change EquipmentName";
 "保存" = "Save";
 "设备名" = "EquipmentName";
+"原密码" = "Original Password";
+"请输入原密码" = "Please enter the Original Password";
 //首页
 "添加密码锁" = "Add Lock";
 "添加网关" = "Add Gateway";
@@ -79,14 +82,45 @@
 "请输入SSID名称" = "Please enter the name of the SSID";
 "请输入SSID密码" = "Please enter the password of the SSID";
 "添加设备" = "Add Equipment";
+"门锁名称" = "Lock Name";
+"门锁序列号" = "Lock Number";
+"请输入门锁名称" = "Please enter the name of the lock";
+"请输入门锁序列号" = "Please enter the number of the lock";
 "添加门锁" = "Add Lock";
 "门锁钥匙" = "Enter the key";
 "确认钥匙" = "Enter again";
 "请输入设备名称" = "Please enter the name of the equipment";
 "请输入门锁钥匙密码" = "Please enter the password of the lock";
 "请再次输入钥匙密码" = "Please enter again the password";
+"添加成功" = "Add successfully!";
 "操作记录" = "Operation records";
 "消息提醒" = "Message records";
+"门锁已开启" = "Door lock has been opened!";
+"门锁已关闭" = "Door lock has been closed!";
+"网关名称不能为空" = "The name of the gateway cannot be nil!";
+"该锁已离线" = "The lock is offline";
+"请先添加一个网关" = "Please add a gateway first";
 //个人中心
 "账号" = "UserName";
 "客服电话" = "Customer-service";
+"退出登录" = "Logout";
+
+//错误code
+"用户未登录" = "User not login";
+"用户名被占用" = "Username is used";
+"用户名或密码错误" = "Username or password error";
+"登录信息已失效，请重新登录" = "The login information failed, please login again";
+"验证码获取失败" = "get verification code error";
+"验证码错误" = "Verification code error";
+"验证码无效" = "Verification code valid";
+"用户未注册" = "User not register";
+"锁未绑定" = "Lock not bind";
+"锁已绑定" = "Lock already bind";
+"锁密码错误" = "Lock password error";
+"对用户重复授权" = "Lock auth repeat";
+"对该用户未授权" = "Lock not auth";
+"网关未绑定" = "Gateway not bind";
+"网关已经绑定" = "Gateway already bind";
+"缺少关键字" = "key required";
+"出现未知错误" = "An unknown error appeared";
+"网络出现错误" = "Network error!";

@@ -26,6 +26,7 @@
 #import <objc/runtime.h>
 #import "LHNotificationDefines.h"
 #import "LHUserDefaultDefines.h"
+#import "LHNetWorkDefines.h"
 #import "UIViewController+HUD.h"
 
 #define LHNotifyCenter [NSNotificationCenter defaultCenter]

@@ -14,5 +14,7 @@
 #define key_userId @"key_userId"
 #define key_userPhone @"key_userPhone"
 #define key_userToken @"key_userToken"
+#define key_currentUserName @"currentUserName"
+#define key_currentGatewaySN @"currentGatewaySN"
 
 #endif /* LHUserDefaultDefines_h */

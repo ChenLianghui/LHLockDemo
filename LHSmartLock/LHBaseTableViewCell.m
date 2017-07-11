@@ -100,6 +100,15 @@
     
 }
 
+- (void)setGatewayModel:(LHGatewayModel *)gatewayModel{
+    _gatewayModel = gatewayModel;
+    self.nameLabel.text = gatewayModel.gatewayName;
+    self.iconImageView.image = [UIImage imageNamed:@"manage_gateway"];
+    self.ASwitch.hidden = YES;
+    self.arrowImageView.hidden = NO;
+    self.rightLabel.hidden = YES;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

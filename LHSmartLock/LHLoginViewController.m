@@ -10,6 +10,8 @@
 #import "LHLoginView.h"
 #import "LHRegistViewController.h"
 #import "LHLostPassWordOneViewController.h"
+#import "LHTabBarViewController.h"
+#import "LHLoginService.h"
 
 @interface LHLoginViewController ()<LHLoginViewDelegate>
 
@@ -22,8 +24,20 @@
 
 @implementation LHLoginViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    //设置导航栏背景图片为一个空的image，这样就透明了
+//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//    
+//    //去掉透明后导航栏下边的黑边
+//    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+//    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 0;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addImageWithName:@"" isLeft:YES WithBlock:nil];
     [self.view addSubview:self.bgImageView];
     [self.view insertSubview:self.mainView aboveSubview:self.bgImageView];
     [self.mainView addSubview:self.loginView];
@@ -31,12 +45,43 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+//    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    //    如果不想让其他页面的导航栏变为透明 需要重置
+//    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:nil];
+//}
+
 - (void)ButtonHadClickedWithTag:(NSInteger)tag{
     switch (tag) {
         case 30:
         {
             //点击登录按钮
             NSLog(@"登录");
+            __weak typeof(self)weakSelf = self;
+            [[LHLoginService sharedInstance] loginWithUserName:self.loginView.userTextField.text andPassword:self.loginView.passwordTextField.text completed:^(NSURLSessionTask *task, id responseObject) {
+                NSLog(@"responseObject:%@",responseObject);
+                [weakSelf showSucceed:NSLocalizedString(@"登录成功", nil) complete:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (weakSelf.isFirstComein) {
+                            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+                            LHTabBarViewController *tabarVC = [[LHTabBarViewController alloc] init];
+                            keyWindow.rootViewController = tabarVC;
+                            [keyWindow makeKeyAndVisible];
+                        }else{
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                        }
+                    });
+                }];
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                
+            }];
+            
         }
             break;
         case 31:
@@ -90,7 +135,7 @@
 
 - (UIView *)mainView{
     if (!_mainView) {
-        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kScreenSize.height)];
+        _mainView = [[UIView alloc] initWithFrame:CGRectMake(0,0, kScreenSize.width, kScreenSize.height)];
         _mainView.backgroundColor = [UIColor clearColor];
     }
     return _mainView;

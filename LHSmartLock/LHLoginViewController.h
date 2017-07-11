@@ -10,4 +10,6 @@
 
 @interface LHLoginViewController : LHBaseViewController
 
+@property (nonatomic,assign)BOOL isFirstComein;
+
 @end

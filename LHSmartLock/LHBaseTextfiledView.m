@@ -36,7 +36,7 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(kBorderMargin);
-        make.top.equalTo(kBorderMargin);
+        make.top.equalTo(kHeightIphone7(10));
         make.width.equalTo(kWidthIphone7(100));
         make.height.equalTo(kHeightIphone7(20));
     }];
@@ -47,6 +47,12 @@
         make.right.equalTo(-kBorderMargin);
         make.height.equalTo(_titleLabel.height);
     }];
+    
+    if (![LHUtils isCurrentLanguageIsChinese]) {
+        [_titleLabel updateConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(kWidthIphone7(130));
+        }];
+    }
 }
 
 @end

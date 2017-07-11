@@ -18,10 +18,12 @@ typedef void(^tokenLoginBlock)(void);
 
 - (void)getVCodeWithMobileStr:(NSString *)mobileStr completed:(void(^)())completed failure:(void (^)())failure;
 
-- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password completed:(void(^)())completed failure:(void (^)())failure;
+- (void)loginWithUserName:(NSString *)username andPassword:(NSString *)password completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure;
 
-- (void)loginWithTokenCompleted:(void(^)())completed failure:(void (^)())failure;
+- (void)loginWithTokenCompleted:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure;
 
-- (void)registerNewAcountWithUserName:(NSString *)username andPassword:(NSString *)password andMoblie:(NSString *)mobile andVcode:(NSString *)vcode completed:(void(^)())completed failure:(void (^)())failure;
+- (void)registerNewAcountWithUserName:(NSString *)username andPassword:(NSString *)password andMoblie:(NSString *)mobile andVcode:(NSString *)vcode completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure;
+
+//- (void)forgetPasswordWithUserName:(NSString *)userName 
 
 @end

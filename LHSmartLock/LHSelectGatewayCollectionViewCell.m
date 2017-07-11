@@ -49,7 +49,7 @@
 
 - (void)setModel:(LHGatewayModel *)model{
     _model = model;
-    _titleLabel.text = model.name;
+    _titleLabel.text = model.gatewayName;
     _titleLabel.textColor = [UIColor appThemeColor];
     _iconImageView.image = [UIImage imageNamed:@"gateway_open"];
 }

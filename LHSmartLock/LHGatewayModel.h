@@ -10,7 +10,9 @@
 
 @interface LHGatewayModel : LHBaseModel
 
-@property (nonatomic,copy)NSString *name;
+@property (nonatomic,copy)NSString *gatewayName;
+@property (nonatomic,copy)NSString *gatewaySn;
 @property (nonatomic,copy)NSArray *locks;
+@property (nonatomic,assign)BOOL Online;//是否在线
 
 @end

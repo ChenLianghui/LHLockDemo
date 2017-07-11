@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "LHTabBarViewController.h"
+#import "LHLoginViewController.h"
+#import "LHUserModel.h"
+#import "LHNavigationViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,8 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    LHTabBarViewController *TabbarVC = [[LHTabBarViewController alloc] init];
-    self.window.rootViewController = TabbarVC;
+    [self comeInToApp];
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -51,6 +53,18 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)comeInToApp{
+    if ([LHUserModel sharedInstance].token) {
+        LHTabBarViewController *TabbarVC = [[LHTabBarViewController alloc] init];
+        self.window.rootViewController = TabbarVC;
+    }else{
+        LHLoginViewController *loginVC = [[LHLoginViewController alloc] init];
+        loginVC.isFirstComein = YES;
+        LHNavigationViewController *loginNav = [[LHNavigationViewController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController = loginNav;
+    }
 }
 
 

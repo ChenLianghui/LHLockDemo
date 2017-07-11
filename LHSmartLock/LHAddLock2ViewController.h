@@ -10,4 +10,8 @@
 
 @interface LHAddLock2ViewController : LHBaseViewController
 
+//@property (nonatomic,copy)NSString *currentGatewaySN;
+@property (nonatomic,copy)NSString *lockname;
+@property (nonatomic,copy)NSString *lockSN;
+
 @end

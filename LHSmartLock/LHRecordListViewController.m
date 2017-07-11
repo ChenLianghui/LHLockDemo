@@ -10,6 +10,7 @@
 #import "LHRecordListTableViewCell.h"
 #import "LHRecordModel.h"
 #import "LHRecordCellModel.h"
+#import "LHDeviceService.h"
 
 @interface LHRecordListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,8 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"操作记录", nil);
+    [self getData];
     [self.view addSubview:self.tableview];
     // Do any additional setup after loading the view.
+}
+
+- (void)getData{
+    [[LHDeviceService sharedInstance] getNewsWithIsPush:NO location:0 completed:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"responseObject1:%@",responseObject);
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

@@ -12,6 +12,9 @@
 
 @interface LHAddLock1ViewController ()
 
+@property (nonatomic,strong)UITextField *locknameTF;
+@property (nonatomic,strong)UITextField *lockSNTF;
+
 @end
 
 @implementation LHAddLock1ViewController
@@ -28,18 +31,37 @@
 }
 
 - (void)addTextfieldViews{
-    LHBaseTextfiledView *textfiledView = [[LHBaseTextfiledView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(10), kScreenSize.width, kBorderMargin*2+kHeightIphone7(20))];
-    textfiledView.backgroundColor = [UIColor backgroundColor];
-    textfiledView.textfield.tag = 80;
-    textfiledView.titleLabel.text = NSLocalizedString(@"添加门锁", nil);
-    textfiledView.textfield.placeholder = NSLocalizedString(@"请输入设备名称", nil);
-    [self.view addSubview:textfiledView];
+    NSArray *titleArray = @[NSLocalizedString(@"门锁名称", nil),NSLocalizedString(@"门锁序列号", nil)];
+    NSArray *placeholderArray = @[NSLocalizedString(@"请输入门锁名称", nil),NSLocalizedString(@"请输入门锁序列号", nil)];
+    for (int i = 0; i < 2; i ++) {
+        LHBaseTextfiledView *textfiledView = [[LHBaseTextfiledView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(10)+(kBorderMargin*2+kHeightIphone7(20)+kHeightIphone7(10))*i, kScreenSize.width, kBorderMargin*2+kHeightIphone7(20))];
+        if (i == 0) {
+            _locknameTF = textfiledView.textfield;
+        }else{
+            _lockSNTF = textfiledView.textfield;
+        }
+        textfiledView.backgroundColor = [UIColor backgroundColor];
+        textfiledView.titleLabel.text = titleArray[i];
+        textfiledView.textfield.placeholder = placeholderArray[i];
+        [self.view addSubview:textfiledView];
+    }
 }
 
 - (void)NextAction{
-    UITextField *textfield = (UITextField *)[self.view viewWithTag:80];
-    LHAddLock2ViewController *addlock2 = [[LHAddLock2ViewController alloc] init];
-    [self.navigationController pushViewController:addlock2 animated:YES];
+    if (![LHUtils isEmptyStr:_locknameTF.text]) {
+        if (![LHUtils isEmptyStr:_lockSNTF.text]) {
+            LHAddLock2ViewController *addlock2 = [[LHAddLock2ViewController alloc] init];
+//            addlock2.currentGatewaySN = [[NSUserDefaults standardUserDefaults] valueForKey:key_currentGatewaySN];
+            addlock2.lockname = _locknameTF.text;
+            addlock2.lockSN = _lockSNTF.text;
+            [self.navigationController pushViewController:addlock2 animated:YES];
+
+        }else{
+            [self showFailed:NSLocalizedString(@"锁序列号不能为空", nil)];
+        }
+    }else{
+        [self showFailed:NSLocalizedString(@"锁名称不能为空", nil)];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

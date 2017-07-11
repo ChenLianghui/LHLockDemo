@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LHTextField.h"
 
 @protocol LHLoginViewDelegate <NSObject>
 
@@ -18,6 +19,8 @@
 
 @interface LHLoginView : UIView
 
+@property (nonatomic,strong)LHTextField *userTextField;
+@property (nonatomic,strong)LHTextField *passwordTextField;
 @property (nonatomic,weak) id<LHLoginViewDelegate> delegate;
 
 @end

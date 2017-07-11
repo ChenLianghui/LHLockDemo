@@ -27,6 +27,7 @@
     [self addItemWithName:NSLocalizedString(@"刷新", nil) isLeft:NO WithBlock:^{
         [weakSelf refreshPassword];
     }];
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
 }
 
@@ -67,6 +68,12 @@
             make.height.equalTo(kHeightIphone7(20));
         }];
         
+        if (![LHUtils isCurrentLanguageIsChinese]) {
+            [temporaryLabel updateConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(kWidthIphone7(160));
+            }];
+        }
+        
         [rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(-kBorderMargin);
             make.top.equalTo(temporaryLabel.top);
@@ -89,6 +96,7 @@
         _desLabel = [[UILabel alloc] initWithFrame:CGRectMake(kBorderMargin, CGRectGetMaxY(self.mainView.frame), kScreenSize.width-kBorderMargin*2, kHeightIphone7(30))];
         _desLabel.text = NSLocalizedString(@"临时密码仅能使用一次，使用之后自动失效", nil);
         _desLabel.textColor = [UIColor grayFontColor];
+        _desLabel.numberOfLines = 0;
         _desLabel.font = [UIFont appFontFour];
     }
     return _desLabel;

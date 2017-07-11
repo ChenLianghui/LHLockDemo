@@ -10,8 +10,10 @@
 
 @interface LHLockModel : LHBaseModel
 
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,assign) int electricNumber;
-@property (nonatomic,assign) BOOL isLock;
+@property (nonatomic,copy) NSString *lockName;
+@property (nonatomic,copy) NSString *lockSn;
+@property (nonatomic,assign) BOOL online;//是否在线
+@property (nonatomic,copy) NSString *status;//open/close/unknow
+@property (nonatomic,copy) NSString *power;//low/middle/high/unknow
 
 @end
