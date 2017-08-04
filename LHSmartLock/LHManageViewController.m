@@ -14,6 +14,10 @@
 
 @interface LHManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
+{
+    BOOL _isPush;
+}
+
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *dataArray;
 
@@ -21,9 +25,14 @@
 
 @implementation LHManageViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addImageWithName:@"" isLeft:YES WithBlock:nil];
+    
     [self.view addSubview:self.tableView];
     //[self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
@@ -38,6 +47,7 @@
     if (!cell) {
         cell = [[LHBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LHBaseTableViewCell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataArray[indexPath.row];
     return cell;
 }
@@ -65,10 +75,10 @@
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(10), kScreenSize.width, kScreenSize.height-64-49-kHeightIphone7(10)) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kScreenSize.height-64-49) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = kHeightIphone7(40);
+        _tableView.rowHeight = kHeightIphone7(50);
         _tableView.tableFooterView = [[UIView alloc] init];
         [_tableView registerClass:[LHBaseTableViewCell class] forCellReuseIdentifier:@"LHBaseTableViewCell"];
     }
@@ -80,7 +90,7 @@
         _dataArray = [NSMutableArray array];
         [_dataArray addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_gateway" labelTitle:NSLocalizedString(@"网关列表", nil) rightTitle:nil isHasSwitch:NO]];
         [_dataArray addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_lock" labelTitle:NSLocalizedString(@"锁列表", nil) rightTitle:nil isHasSwitch:NO]];
-        [_dataArray addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_push" labelTitle:NSLocalizedString(@"推送", nil) rightTitle:nil isHasSwitch:YES]];
+        
     }
     return _dataArray;
 }

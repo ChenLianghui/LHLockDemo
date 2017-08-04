@@ -70,6 +70,25 @@
 "设备名" = "EquipmentName";
 "原密码" = "Original Password";
 "请输入原密码" = "Please enter the Original Password";
+"遥控器" = "RemoteControl";
+"确定要删除该遥控器" = "Are you sure to remove the remote control?";
+"删除" = "Delete";
+"名称" = "Set name";
+"请输入网关的名称" = "Please enter a name of the gateway";
+"请输入新的网关名称" = "Please enter a new name of the gateway";
+"请输入授权用户的账号" = "Please enter the account of your will authorize";
+"开锁密码" = "Open password";
+"开始时间" = "Start date";
+"结束时间" = "End date";
+"请输入开锁密码" = "Please enter open password";
+"请选择开始时间" = "Please select the start date";
+"请选择结束时间" = "Please select the end date";
+"锁详情" = "Lock Detail";
+"您当前没有连接WiFi" = "Mobile phone is not currently connected WiFi";
+"是否去设置" = "Whether to set up?";
+"去设置" = "set up";
+"您未开启推送，软件的一些功能将会被限制" = "You have not opened the push, some of the software will be limited
+";
 //首页
 "添加密码锁" = "Add Lock";
 "添加网关" = "Add Gateway";
@@ -100,6 +119,8 @@
 "网关名称不能为空" = "The name of the gateway cannot be nil!";
 "该锁已离线" = "The lock is offline";
 "请先添加一个网关" = "Please add a gateway first";
+"序列号" = "Serial Number";
+"设备入网" = "Online";
 //个人中心
 "账号" = "UserName";
 "客服电话" = "Customer-service";

@@ -24,5 +24,14 @@ typedef enum : NSUInteger {
 
 //拨打电话
 +(void)callTelephoneWithString:(NSString *)mobile;
+
+//日期字符串转出时间戳
++ (NSString *)timeSwitchTimestamp:(NSString *)dateStr;
+
+//时间戳转出日期字符串
++ (NSString *)timeStampSwitchDateStr:(NSString *)stampStr;
+
+//时间戳转出日期时间字符串
++ (NSString *)timeStampSwitchMonthTimeStr:(NSString *)stampStr;
     
 @end

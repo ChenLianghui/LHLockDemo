@@ -59,9 +59,8 @@
         NSDictionary *dataDic = [responseObject valueForKey:@"data"];
 //        [JPUSHService setTags:set alias:mobileStr callbackSelector:nil object:nil];
         [_userModel setValuesForKeysWithDictionary:dataDic];
-        if ([LHUtils isEmptyStr:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentUserName]]) {
-            [[NSUserDefaults standardUserDefaults]setValue:username forKey:key_currentUserName];
-        }
+        [[NSUserDefaults standardUserDefaults]setValue:username forKey:key_currentUserName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:key_NoticeLogin object:nil];
         if (completed) {
             completed(task,responseObject);
         }
@@ -75,7 +74,7 @@
 - (void)loginWithTokenCompleted:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
     if (_userModel.token) {
         NSDictionary *params = @{@"username":_userModel.username,@"token":_userModel.token};
-        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/account/tokenLogin" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/tokenLogin" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
             NSDictionary *dataDic = [responseObject valueForKey:@"data"];
             //        [JPUSHService setTags:set alias:mobileStr callbackSelector:nil object:nil];
             [_userModel setValuesForKeysWithDictionary:dataDic];

@@ -10,7 +10,9 @@
 
 @interface LHRecordModel : LHBaseModel
 
-@property (nonatomic,copy)NSString *dateStr;
-@property (nonatomic,strong)NSMutableArray *cellModels;
+@property (nonatomic,copy)NSString *time;//时间戳
+@property (nonatomic,copy)NSString *title;
+@property (nonatomic,copy)NSString *msg;
+@property (nonatomic,copy)NSString *type;
 
 @end

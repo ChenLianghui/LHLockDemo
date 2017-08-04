@@ -9,7 +9,7 @@
 #import "LHLoginView.h"
 #import "JXTAlertManagerHeader.h"
 
-@interface LHLoginView ()
+@interface LHLoginView ()<UITextFieldDelegate>
 
 @property (nonatomic,strong)UIButton *loginButton;
 @property (nonatomic,strong)UIButton *registButton;

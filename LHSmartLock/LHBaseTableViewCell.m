@@ -35,6 +35,7 @@
     [self.contentView addSubview:_arrowImageView];
     
     _ASwitch = [UISwitch new];
+    [_ASwitch addTarget:self action:@selector(switchClicked:) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:_ASwitch];
     
     _rightLabel = [UILabel new];
@@ -44,9 +45,9 @@
     
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(kBorderMargin);
-        make.top.equalTo(kHeightIphone7(9));
-        make.bottom.equalTo(-kHeightIphone7(9));
-        make.width.equalTo(kWidthIphone7(20));
+        make.centerY.equalTo(self.contentView.centerY);
+        make.height.equalTo(kWidthIphone7(20));
+        make.width.equalTo(_iconImageView.height);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,10 +65,8 @@
     }];
     
     [_ASwitch mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(kHeightIphone7(5));
         make.right.equalTo(self.arrowImageView.right);
-        make.width.equalTo(kWidthIphone7(50));
-        make.bottom.equalTo(kHeightIphone7(5));
+        make.centerY.equalTo(self.contentView.centerY);
     }];
     
     [_rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,6 +75,17 @@
         make.width.equalTo(kWidthIphone7(100));
         make.bottom.equalTo(self.iconImageView.bottom);
     }];
+}
+
+- (void)switchClicked:(UISwitch *)Aswitch{
+    if (self.switchBlock) {
+        self.switchBlock(Aswitch.isOn);
+    }
+//    if (Aswitch.isOn) {
+//        NSLog(@"on");
+//    }else{
+//        NSLog(@"off");
+//    }
 }
 
 - (void)setModel:(LHBaseTableModel *)model{
@@ -97,7 +107,6 @@
             self.rightLabel.hidden = YES;
         }
     }
-    
 }
 
 - (void)setGatewayModel:(LHGatewayModel *)gatewayModel{

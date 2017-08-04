@@ -7,12 +7,14 @@
 //
 
 #import "LHTemporaryPasswordViewController.h"
+#import "LHDeviceService.h"
 
 @interface LHTemporaryPasswordViewController ()
 
 @property (nonatomic,strong)UIView *mainView;
 @property (nonatomic,strong)UILabel *passwordLabel;
 @property (nonatomic,strong)UILabel *desLabel;
+@property (nonatomic,copy)NSString *password;
 
 @end
 
@@ -27,16 +29,48 @@
     [self addItemWithName:NSLocalizedString(@"刷新", nil) isLeft:NO WithBlock:^{
         [weakSelf refreshPassword];
     }];
+    [self getPassword];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
 }
 
+- (void)getPassword{
+    __weak typeof(self)weakSelf = self;
+    [[LHDeviceService sharedInstance] getLockTemporaryPasswordWithGateWaySN:@"" andLockSN:self.lockModel.lockSn completed:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"responseObject:%@",responseObject);
+        if ([[responseObject valueForKey:@"data"] isKindOfClass:[NSNull class]]) {
+            [[LHDeviceService sharedInstance] updateLockTemporaryPasswordWithGateWaySN:@"" andLockSN:weakSelf.lockModel.lockSn completed:^(NSURLSessionTask *task, id responseObject) {
+                NSDictionary *dataDic = [responseObject valueForKey:@"data"];
+                weakSelf.passwordLabel.text = [dataDic valueForKey:@"password"];
+//                NSString *time = [NSString stringWithFormat:@"%@",[dataDic valueForKey:@"over_time"]];
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                
+            }];
+        }else{
+            NSDictionary *dataDic = [responseObject valueForKey:@"data"];
+            weakSelf.passwordLabel.text = [dataDic valueForKey:@"password"];
+//            NSString *time = [NSString stringWithFormat:@"%@",[dataDic valueForKey:@"over_time"]];
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+    }];
+}
+
 - (void)refreshPassword{
-    NSString *strRandom = @"";
-    for (int i = 0; i < 6; i++) {
-        strRandom = [strRandom stringByAppendingFormat:@"%i",(arc4random()%9)];
-    }
-    _passwordLabel.text = strRandom;
+    __weak typeof(self)weakSelf = self;
+    [[LHDeviceService sharedInstance] updateLockTemporaryPasswordWithGateWaySN:@"" andLockSN:self.lockModel.lockSn completed:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"responseObject:%@",responseObject);
+        NSDictionary *dataDic = [responseObject valueForKey:@"data"];
+        weakSelf.passwordLabel.text = [dataDic valueForKey:@"password"];
+
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+    }];
+//    NSString *strRandom = @"";
+//    for (int i = 0; i < 6; i++) {
+//        strRandom = [strRandom stringByAppendingFormat:@"%i",(arc4random()%9)];
+//    }
+//    _passwordLabel.text = strRandom;
 }
 
 - (UIView *)mainView{
@@ -51,7 +85,7 @@
         
         _passwordLabel = [UILabel new];
         _passwordLabel.font = [UIFont appFontTwo];
-        _passwordLabel.text = @"234242";
+//        _passwordLabel.text = @"234242";
         [_mainView addSubview:_passwordLabel];
         
         UILabel *rightLabel = [UILabel new];

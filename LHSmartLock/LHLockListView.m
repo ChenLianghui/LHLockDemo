@@ -194,7 +194,17 @@
 }
 
 - (void)setLockArray:(NSMutableArray *)lockArray{
-    _lockArray = lockArray;
+    if (lockArray.count!=0) {
+        if (_lockArray != lockArray) {
+            _lockArray = lockArray;
+            _selectIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+            [self LineViewScrollToX:kScreenSize.width/8];
+        }
+    }else{
+        _selectIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self LineViewScrollToX:kScreenSize.width/8];
+    }
+    
     [self.collectionView reloadData];
 }
 

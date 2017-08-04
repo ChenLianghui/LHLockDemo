@@ -78,6 +78,7 @@
             {
                 _mobileTextField = inputTF;
                 _mobileTextField.keyboardType = UIKeyboardTypeNumberPad;
+                _mobileTextField.delegate = self;
             }
                 break;
             case 4:
@@ -142,7 +143,6 @@
     }
 
     [button countDownFromTime:10 title:NSLocalizedString(@"重新获取", nil) unitTitle:@"s" mainColor:[UIColor clearColor] countColor:[UIColor clearColor]];
-    //以下为获取验证码代码
 }
 
 #pragma mark - 点击确认按钮
@@ -174,6 +174,17 @@
 }
 
 #pragma mark - UITextfieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@""]) {
+        return YES;
+    }
+    if (textField == _mobileTextField && textField.text.length>=11) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag == 41 || textField.tag == 42) {

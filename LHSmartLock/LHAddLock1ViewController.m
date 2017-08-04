@@ -57,10 +57,10 @@
             [self.navigationController pushViewController:addlock2 animated:YES];
 
         }else{
-            [self showFailed:NSLocalizedString(@"锁序列号不能为空", nil)];
+            [self showFailed:NSLocalizedString(@"请输入门锁序列号", nil)];
         }
     }else{
-        [self showFailed:NSLocalizedString(@"锁名称不能为空", nil)];
+        [self showFailed:NSLocalizedString(@"请输入门锁名称", nil)];
     }
 }
 

@@ -163,6 +163,26 @@
 
 
 /**
+ 删除锁/解绑锁
+
+ @param lock_sn 锁序列号
+
+ */
+- (void)unbindLockWithLockSn:(NSString *)lock_sn completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
+    NSDictionary *params = @{@"username":_userModel.username,@"lockSn":lock_sn};
+    [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/unbind" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+        if (completed) {
+            completed(task,responseObject);
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
+        }
+    }];
+}
+
+
+/**
  查询特定网关下锁的状态
 
  @param sn 网关SN
@@ -171,6 +191,28 @@
 - (void)findAllLockUnderTheGatewaySN:(NSString *)sn completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
     NSDictionary *params = @{@"username":_userModel.username,@"gatewaySn":sn};
     [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/get/list" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+        if (completed) {
+            completed(task,responseObject);
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
+        }
+    }];
+}
+
+
+/**
+ 开关锁操作
+
+ @param gatewaySn 网关序列号
+ @param lockSn 锁序列号
+ @param status 要变成的状态（open为开锁，close为关锁）
+
+ */
+- (void)controlTheLockWithGatewaySN:(NSString *)gatewaySn lockSn:(NSString *)lockSn ToStatus:(NSString *)status completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
+    NSDictionary *params = @{@"username":_userModel.username,@"gatewaySn":gatewaySn,@"lockSn":lockSn,@"status":status};
+    [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/control" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
         if (completed) {
             completed(task,responseObject);
         }
@@ -213,7 +255,7 @@
  @param newPassword 新密码
 
  */
-- (void)changeLockNameWithGatewaySN:(NSString *)gateway_sn andLockSN:(NSString *)lock_sn andOldPassword:(NSString *)oldPassword andNewPassword:(NSString *)newPassword completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
+- (void)changeLockPasswordWithGatewaySN:(NSString *)gateway_sn andLockSN:(NSString *)lock_sn andOldPassword:(NSString *)oldPassword andNewPassword:(NSString *)newPassword completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
     NSDictionary *params = @{@"username":_userModel.username,@"gatewaySn":gateway_sn,@"lockSn":lock_sn,@"password":oldPassword,@"newPassword":newPassword};
     [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/set/password" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
         if (completed) {
@@ -232,17 +274,11 @@
 
  @param gateway_sn 网关序列号
  @param lock_sn 锁序列号
- @param isAlarm 是否报警
+ @param alarm open为允许，close为禁止
 
  */
-- (void)lockAlarmSettingWithGatewaySN:(NSString *)gateway_sn andLockSN:(NSString *)lock_sn andIsAlarm:(BOOL)isAlarm completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
-    NSString *alarm;
-    if (isAlarm) {
-        alarm = @"0";
-    }else{
-        alarm = @"1";
-    }
-    NSDictionary *params = @{@"username":_userModel.username,@"gatewaySn":gateway_sn,@"lockSn":lock_sn,@"alarm":alarm};
+- (void)lockAlarmSettingWithGatewaySN:(NSString *)gateway_sn andLockSN:(NSString *)lock_sn andAlarm:(NSString *)alarm completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
+    NSDictionary *params = @{@"username":_userModel.username,@"lockSn":lock_sn,@"alarm":alarm};
     [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/set/alarm" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
         if (completed) {
             completed(task,responseObject);
@@ -260,16 +296,20 @@
 
  */
 - (void)getLockTemporaryPasswordWithGateWaySN:(NSString *)gateway_sn andLockSN:(NSString *)lock_sn completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
-    NSDictionary *params = @{@"username":_userModel.username,@"gatewaySn":gateway_sn,@"lockSn":lock_sn};
-    [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/tpassword/get" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
-        if (completed) {
-            completed(task,responseObject);
-        }
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        if (failure) {
-            failure(operation,error);
-        }
-    }];
+    if (![LHUtils isEmptyStr:lock_sn]) {
+        NSDictionary *params = @{@"username":_userModel.username,@"lockSn":lock_sn};
+        [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/tpassword/get" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+            if (completed) {
+                completed(task,responseObject);
+            }
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            if (failure) {
+                failure(operation,error);
+            }
+        }];
+    }else{
+        
+    }
 }
 
 
@@ -300,8 +340,8 @@
  @param startStr 开始时间
  @param endStr 结束时间
  */
-- (void)addNewAuthWithLockSN:(NSString *)lock_sn andAuth_user:(NSString *)auth_user andPassword:(NSString *)password andStartTime:(NSString *)startStr andEndTime:(NSString *)endStr completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
-    NSDictionary *params = @{@"username":_userModel.username,@"authUser":auth_user,@"lockSn":lock_sn,@"password":password,@"start":startStr,@"end":endStr};
+- (void)addNewAuthWithLockSN:(NSString *)lock_sn andAuth_user:(NSString *)auth_user andPassword:(NSString *)password andStartTime:(NSString *)startStr andEndTime:(NSString *)endStr status:(NSString *)status completed:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
+    NSDictionary *params = @{@"username":_userModel.username,@"authUser":auth_user,@"lockSn":lock_sn,@"password":password,@"start":[LHUtils timeSwitchTimestamp:startStr],@"end":[LHUtils timeSwitchTimestamp:endStr],@"status":status};
     [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/lock/auth/add" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
         if (completed) {
             completed(task,responseObject);
@@ -403,4 +443,23 @@
         }
     }];
 }
+
+
+/**
+ 获取所有的锁列表
+
+ */
+- (void)getAllLockListCompleted:(void (^)(NSURLSessionTask *task, id responseObject))completed failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
+    NSDictionary *params = @{@"username":_userModel.username};
+    [[LHNetworkingManager sharedInstance] POSTDateWithUrlString:@"/v1/account/get/locks" parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+        if (completed) {
+            completed(task,responseObject);
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure) {
+            failure(operation,error);
+        }
+    }];
+}
+
 @end

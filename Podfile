@@ -8,5 +8,6 @@ pod "SDWebImage"
 pod 'SDCycleScrollView'
 pod 'MJRefresh'
 pod 'IQKeyboardManager'
+pod 'JPush'
 
 end

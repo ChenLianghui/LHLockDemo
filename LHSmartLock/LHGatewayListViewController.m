@@ -11,6 +11,7 @@
 #import "LHBaseTableModel.h"
 #import "LHDeviceService.h"
 #import "LHGatewayModel.h"
+#import "LHGatewayDetailViewController.h"
 
 @interface LHGatewayListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -26,20 +27,28 @@
     self.title = NSLocalizedString(@"网关列表", nil);
     [self.view addSubview:self.tableview];
     [self getDate];
+    //当网关被删除时，刷新列表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGatewayData) name:key_NoticeGatewayAmountChange object:nil];
     // Do any additional setup after loading the view.
 }
 
+- (void)reloadGatewayData{
+    [self getDate];
+}
+
 - (void)getDate{
+    __weak typeof(self)weakSelf = self;
     [[LHDeviceService sharedInstance] findAllGatewayCompleted:^(NSURLSessionTask *task, id responseObject) {
         NSLog(@"responseObject:%@",responseObject);
         NSArray *dataArray = [responseObject valueForKey:@"data"];
+        [weakSelf.dataArray removeAllObjects];
         for (NSDictionary *dict in dataArray) {
             LHGatewayModel *model = [LHGatewayModel new];
             [model setValuesForKeysWithDictionary:dict];
-            [self.dataArray addObject:model];
+            [weakSelf.dataArray addObject:model];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableview reloadData];
+            [weakSelf.tableview reloadData];
         });
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         
@@ -55,8 +64,15 @@
     if (!cell) {
         cell = [[LHBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LHBaseTableViewCell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.gatewayModel = self.dataArray[indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LHGatewayDetailViewController *gatewayDetailVC = [[LHGatewayDetailViewController alloc] init];
+    gatewayDetailVC.gatewayModel = self.dataArray[indexPath.row];
+    [self.navigationController pushViewController:gatewayDetailVC animated:YES];
 }
 
 - (UITableView *)tableview{

@@ -8,7 +8,7 @@
 
 #import "LHChangeLockPasswordViewController.h"
 #import "LHBaseTextfiledView.h"
-//#import "LHNumberKeyBoard.h"
+#import "LHDeviceService.h"
 
 @interface LHChangeLockPasswordViewController ()
 
@@ -63,8 +63,13 @@
         if (![LHUtils isEmptyStr:_textfield2.text]) {
             if (![LHUtils isEmptyStr:_textfield3.text]) {
                 if ([_textfield2.text isEqualToString:_textfield3.text]) {
-                    [self showSucceed:NSLocalizedString(@"修改密码成功", nil) complete:^{
-                        [self.navigationController popViewControllerAnimated:YES];
+                    __weak typeof(self)weakSelf = self;
+                    [[LHDeviceService sharedInstance] changeLockPasswordWithGatewaySN:@"" andLockSN:weakSelf.lockModel.lockSn andOldPassword:_textfield1.text andNewPassword:_textfield2.text completed:^(NSURLSessionTask *task, id responseObject) {
+                        [weakSelf showSucceed:NSLocalizedString(@"修改密码成功", nil) complete:^{
+                            [weakSelf.navigationController popViewControllerAnimated:YES];
+                        }];
+                    } failure:^(NSURLSessionTask *operation, NSError *error) {
+                        
                     }];
                 }else{
                     [self showFailed:NSLocalizedString(@"两次密码输入不一致", nil)];

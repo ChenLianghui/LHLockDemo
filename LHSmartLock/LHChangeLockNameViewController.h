@@ -7,7 +7,11 @@
 //
 
 #import "LHBaseViewController.h"
+#import "LHLockModel.h"
+
 
 @interface LHChangeLockNameViewController : LHBaseViewController
+
+@property (nonatomic,strong)LHLockModel *lockModel;
 
 @end

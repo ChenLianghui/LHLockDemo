@@ -7,7 +7,13 @@
 //
 
 #import "LHBaseViewController.h"
+#import "LHLockModel.h"
+#import "LHAuthUserModel.h"
 
 @interface LHAddUserViewController : LHBaseViewController
+
+@property (nonatomic,assign)BOOL isAdd;
+@property (nonatomic,strong)LHLockModel *lockModel;
+@property (nonatomic,strong)LHAuthUserModel *authUserModel;
 
 @end

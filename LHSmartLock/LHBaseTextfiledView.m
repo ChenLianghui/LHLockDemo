@@ -34,6 +34,10 @@
     _textfield.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self addSubview:_textfield];
     
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = [UIColor grayLineColor];
+    [self addSubview:lineView];
+    
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(kBorderMargin);
         make.top.equalTo(kHeightIphone7(10));
@@ -46,6 +50,12 @@
         make.top.equalTo(_titleLabel.top);
         make.right.equalTo(-kBorderMargin);
         make.height.equalTo(_titleLabel.height);
+    }];
+    
+    [lineView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.width.equalTo(_textfield);
+        make.top.equalTo(_textfield.bottom);
+        make.height.equalTo(1);
     }];
     
     if (![LHUtils isCurrentLanguageIsChinese]) {

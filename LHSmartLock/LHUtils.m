@@ -39,4 +39,30 @@
     }
 }
 
++ (NSString *)timeSwitchTimestamp:(NSString *)dateStr{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [formatter setTimeZone:timeZone];
+    NSDate *date = [formatter dateFromString:dateStr];
+    double timeSp = [date timeIntervalSince1970];
+    return [NSString stringWithFormat:@"%.f",timeSp];
+}
+
++ (NSString *)timeStampSwitchDateStr:(NSString *)stampStr{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[stampStr doubleValue]/1000.0];
+    return [formatter stringFromDate:date];
+}
+
++ (NSString *)timeStampSwitchMonthTimeStr:(NSString *)stampStr{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd HH:mm"];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[stampStr doubleValue]/1000.0];
+    return [formatter stringFromDate:date];
+}
+
 @end

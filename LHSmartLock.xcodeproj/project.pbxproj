@@ -27,6 +27,8 @@
 		0E4A2C121F09E80600B09FDF /* ESPTouchGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A2C0E1F09E80600B09FDF /* ESPTouchGenerator.m */; };
 		0E4A2C171F09E81A00B09FDF /* ESPUDPSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A2C141F09E81A00B09FDF /* ESPUDPSocketClient.m */; };
 		0E4A2C181F09E81A00B09FDF /* ESPUDPSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4A2C161F09E81A00B09FDF /* ESPUDPSocketServer.m */; };
+		0E5082601F1C5626006EAE06 /* LHGatewayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E50825F1F1C5626006EAE06 /* LHGatewayDetailViewController.m */; };
+		0E5082641F1CBC74006EAE06 /* LHRemoteControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5082631F1CBC74006EAE06 /* LHRemoteControlViewController.m */; };
 		0E60470B1EE798140091C10C /* LHBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E60470A1EE798140091C10C /* LHBaseTableViewCell.m */; };
 		0E60470E1EE798900091C10C /* LHBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E60470D1EE798900091C10C /* LHBaseModel.m */; };
 		0E6047111EE798DD0091C10C /* LHBaseTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6047101EE798DD0091C10C /* LHBaseTableModel.m */; };
@@ -55,9 +57,9 @@
 		0E9C5A0E1EEE478600EB0426 /* LHMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C5A0D1EEE478600EB0426 /* LHMessageListViewController.m */; };
 		0E9C5A131EEE5C7300EB0426 /* LHRecordListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C5A121EEE5C7300EB0426 /* LHRecordListTableViewCell.m */; };
 		0E9C5A171EEE673A00EB0426 /* LHRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C5A161EEE673A00EB0426 /* LHRecordModel.m */; };
-		0E9C5A1A1EEE6A0600EB0426 /* LHRecordCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C5A191EEE6A0600EB0426 /* LHRecordCellModel.m */; };
 		0E9C5A201EEE728D00EB0426 /* LHMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C5A1F1EEE728D00EB0426 /* LHMessageModel.m */; };
 		0E9C5A231EEE741F00EB0426 /* LHMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C5A221EEE741F00EB0426 /* LHMessageTableViewCell.m */; };
+		0EC5E60A1F2742DB00C8E6C9 /* LHAuthUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC5E6091F2742DB00C8E6C9 /* LHAuthUserModel.m */; };
 		0EEAD9FF1ED42BB300F92E33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEAD9FE1ED42BB300F92E33 /* main.m */; };
 		0EEADA021ED42BB300F92E33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEADA011ED42BB300F92E33 /* AppDelegate.m */; };
 		0EEADA051ED42BB300F92E33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEADA041ED42BB300F92E33 /* ViewController.m */; };
@@ -90,9 +92,9 @@
 		0EFAA0781EE64A5E0054AE47 /* UIButton+CountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA0771EE64A5E0054AE47 /* UIButton+CountDown.m */; };
 		0EFAA07C1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA07B1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m */; };
 		0EFAA07F1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFAA07E1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m */; };
+		0EFDB0F51F1DA25800FD9422 /* LHeditGatewayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFDB0F41F1DA25800FD9422 /* LHeditGatewayViewController.m */; };
 		0EFE4B941EF22A9F00842E34 /* LHAuthorUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B931EF22A9F00842E34 /* LHAuthorUserViewController.m */; };
 		0EFE4B981EF22F0600842E34 /* LHAddUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B971EF22F0600842E34 /* LHAddUserViewController.m */; };
-		0EFE4B9C1EF23B9300842E34 /* LHUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B9B1EF23B9300842E34 /* LHUserDetailViewController.m */; };
 		0EFE4B9F1EF283B600842E34 /* LHChangeLockNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4B9E1EF283B600842E34 /* LHChangeLockNameViewController.m */; };
 		0EFE4BA31EF28EE300842E34 /* LHMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE4BA21EF28EE300842E34 /* LHMineTableViewCell.m */; };
 		53D005C3752109EEF22E4215 /* libPods-LHSmartLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A485E8006EB9A721613487F6 /* libPods-LHSmartLock.a */; };
@@ -161,6 +163,11 @@
 		0E4A2C141F09E81A00B09FDF /* ESPUDPSocketClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUDPSocketClient.m; sourceTree = "<group>"; };
 		0E4A2C151F09E81A00B09FDF /* ESPUDPSocketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPUDPSocketServer.h; sourceTree = "<group>"; };
 		0E4A2C161F09E81A00B09FDF /* ESPUDPSocketServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUDPSocketServer.m; sourceTree = "<group>"; };
+		0E50825E1F1C5626006EAE06 /* LHGatewayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGatewayDetailViewController.h; sourceTree = "<group>"; };
+		0E50825F1F1C5626006EAE06 /* LHGatewayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGatewayDetailViewController.m; sourceTree = "<group>"; };
+		0E5082621F1CBC74006EAE06 /* LHRemoteControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRemoteControlViewController.h; sourceTree = "<group>"; };
+		0E5082631F1CBC74006EAE06 /* LHRemoteControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRemoteControlViewController.m; sourceTree = "<group>"; };
+		0E50BCFF1F3079C9008E79B1 /* LHSmartLock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LHSmartLock.entitlements; sourceTree = "<group>"; };
 		0E6047091EE798140091C10C /* LHBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHBaseTableViewCell.h; sourceTree = "<group>"; };
 		0E60470A1EE798140091C10C /* LHBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHBaseTableViewCell.m; sourceTree = "<group>"; };
 		0E60470C1EE798900091C10C /* LHBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHBaseModel.h; sourceTree = "<group>"; };
@@ -218,12 +225,12 @@
 		0E9C5A121EEE5C7300EB0426 /* LHRecordListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRecordListTableViewCell.m; sourceTree = "<group>"; };
 		0E9C5A151EEE673A00EB0426 /* LHRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRecordModel.h; sourceTree = "<group>"; };
 		0E9C5A161EEE673A00EB0426 /* LHRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRecordModel.m; sourceTree = "<group>"; };
-		0E9C5A181EEE6A0600EB0426 /* LHRecordCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHRecordCellModel.h; sourceTree = "<group>"; };
-		0E9C5A191EEE6A0600EB0426 /* LHRecordCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHRecordCellModel.m; sourceTree = "<group>"; };
 		0E9C5A1E1EEE728D00EB0426 /* LHMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMessageModel.h; sourceTree = "<group>"; };
 		0E9C5A1F1EEE728D00EB0426 /* LHMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHMessageModel.m; sourceTree = "<group>"; };
 		0E9C5A211EEE741F00EB0426 /* LHMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMessageTableViewCell.h; sourceTree = "<group>"; };
 		0E9C5A221EEE741F00EB0426 /* LHMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHMessageTableViewCell.m; sourceTree = "<group>"; };
+		0EC5E6081F2742DB00C8E6C9 /* LHAuthUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAuthUserModel.h; sourceTree = "<group>"; };
+		0EC5E6091F2742DB00C8E6C9 /* LHAuthUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAuthUserModel.m; sourceTree = "<group>"; };
 		0EEAD9FA1ED42BB300F92E33 /* LHSmartLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LHSmartLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EEAD9FE1ED42BB300F92E33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0EEADA001ED42BB300F92E33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -291,12 +298,12 @@
 		0EFAA07B1EE69A2C0054AE47 /* LHLostPassWordOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHLostPassWordOneViewController.m; sourceTree = "<group>"; };
 		0EFAA07D1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHLostPassWordTwoViewController.h; sourceTree = "<group>"; };
 		0EFAA07E1EE6A08D0054AE47 /* LHLostPassWordTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHLostPassWordTwoViewController.m; sourceTree = "<group>"; };
+		0EFDB0F31F1DA25800FD9422 /* LHeditGatewayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHeditGatewayViewController.h; sourceTree = "<group>"; };
+		0EFDB0F41F1DA25800FD9422 /* LHeditGatewayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHeditGatewayViewController.m; sourceTree = "<group>"; };
 		0EFE4B921EF22A9F00842E34 /* LHAuthorUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAuthorUserViewController.h; sourceTree = "<group>"; };
 		0EFE4B931EF22A9F00842E34 /* LHAuthorUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAuthorUserViewController.m; sourceTree = "<group>"; };
 		0EFE4B961EF22F0600842E34 /* LHAddUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHAddUserViewController.h; sourceTree = "<group>"; };
 		0EFE4B971EF22F0600842E34 /* LHAddUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHAddUserViewController.m; sourceTree = "<group>"; };
-		0EFE4B9A1EF23B9300842E34 /* LHUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHUserDetailViewController.h; sourceTree = "<group>"; };
-		0EFE4B9B1EF23B9300842E34 /* LHUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHUserDetailViewController.m; sourceTree = "<group>"; };
 		0EFE4B9D1EF283B600842E34 /* LHChangeLockNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHChangeLockNameViewController.h; sourceTree = "<group>"; };
 		0EFE4B9E1EF283B600842E34 /* LHChangeLockNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHChangeLockNameViewController.m; sourceTree = "<group>"; };
 		0EFE4BA11EF28EE300842E34 /* LHMineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMineTableViewCell.h; sourceTree = "<group>"; };
@@ -442,6 +449,25 @@
 			name = task;
 			sourceTree = "<group>";
 		};
+		0E50825D1F1C5606006EAE06 /* 网关详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0EFDB0F21F1DA24200FD9422 /* 编辑网关 */,
+				0E50825E1F1C5626006EAE06 /* LHGatewayDetailViewController.h */,
+				0E50825F1F1C5626006EAE06 /* LHGatewayDetailViewController.m */,
+			);
+			name = "网关详情";
+			sourceTree = "<group>";
+		};
+		0E5082611F1CBC51006EAE06 /* 遥控器 */ = {
+			isa = PBXGroup;
+			children = (
+				0E5082621F1CBC74006EAE06 /* LHRemoteControlViewController.h */,
+				0E5082631F1CBC74006EAE06 /* LHRemoteControlViewController.m */,
+			);
+			name = "遥控器";
+			sourceTree = "<group>";
+		};
 		0E60471B1EE8E0720091C10C /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +511,7 @@
 			children = (
 				0E68C7CA1EEF80D0002F98AA /* LHGatewayListViewController.h */,
 				0E68C7CB1EEF80D0002F98AA /* LHGatewayListViewController.m */,
+				0E50825D1F1C5606006EAE06 /* 网关详情 */,
 			);
 			name = "网关列表";
 			sourceTree = "<group>";
@@ -505,6 +532,7 @@
 				0E68C7D21EEF857E002F98AA /* LHLockDetailViewController.h */,
 				0E68C7D31EEF857E002F98AA /* LHLockDetailViewController.m */,
 				0EFE4BA01EF283BC00842E34 /* 修改设备名 */,
+				0E5082611F1CBC51006EAE06 /* 遥控器 */,
 				0EFE4B911EF22A7A00842E34 /* 授权用户 */,
 				0EA5568C1EF0DB300071C839 /* 临时密码 */,
 				0E0CDF2E1EEFB8D5003EE128 /* 修改密码 */,
@@ -619,8 +647,6 @@
 			children = (
 				0E9C5A151EEE673A00EB0426 /* LHRecordModel.h */,
 				0E9C5A161EEE673A00EB0426 /* LHRecordModel.m */,
-				0E9C5A181EEE6A0600EB0426 /* LHRecordCellModel.h */,
-				0E9C5A191EEE6A0600EB0426 /* LHRecordCellModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -686,6 +712,7 @@
 		0EEAD9FC1ED42BB300F92E33 /* LHSmartLock */ = {
 			isa = PBXGroup;
 			children = (
+				0E50BCFF1F3079C9008E79B1 /* LHSmartLock.entitlements */,
 				0E60471F1EE8E34A0091C10C /* Model */,
 				0E60471B1EE8E0720091C10C /* Service */,
 				0E2253B11EDE9CB4003B6AE4 /* Extension */,
@@ -922,13 +949,23 @@
 			name = "忘记密码";
 			sourceTree = "<group>";
 		};
+		0EFDB0F21F1DA24200FD9422 /* 编辑网关 */ = {
+			isa = PBXGroup;
+			children = (
+				0EFDB0F31F1DA25800FD9422 /* LHeditGatewayViewController.h */,
+				0EFDB0F41F1DA25800FD9422 /* LHeditGatewayViewController.m */,
+			);
+			name = "编辑网关";
+			sourceTree = "<group>";
+		};
 		0EFE4B911EF22A7A00842E34 /* 授权用户 */ = {
 			isa = PBXGroup;
 			children = (
-				0EFE4B991EF23B7B00842E34 /* 用户详情 */,
 				0EFE4B951EF22EF500842E34 /* 添加用户 */,
 				0EFE4B921EF22A9F00842E34 /* LHAuthorUserViewController.h */,
 				0EFE4B931EF22A9F00842E34 /* LHAuthorUserViewController.m */,
+				0EC5E6081F2742DB00C8E6C9 /* LHAuthUserModel.h */,
+				0EC5E6091F2742DB00C8E6C9 /* LHAuthUserModel.m */,
 			);
 			name = "授权用户";
 			sourceTree = "<group>";
@@ -940,15 +977,6 @@
 				0EFE4B971EF22F0600842E34 /* LHAddUserViewController.m */,
 			);
 			name = "添加用户";
-			sourceTree = "<group>";
-		};
-		0EFE4B991EF23B7B00842E34 /* 用户详情 */ = {
-			isa = PBXGroup;
-			children = (
-				0EFE4B9A1EF23B9300842E34 /* LHUserDetailViewController.h */,
-				0EFE4B9B1EF23B9300842E34 /* LHUserDetailViewController.m */,
-			);
-			name = "用户详情";
 			sourceTree = "<group>";
 		};
 		0EFE4BA01EF283BC00842E34 /* 修改设备名 */ = {
@@ -1049,7 +1077,12 @@
 					0EEAD9F91ED42BB300F92E33 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 7ZKMYBPL55;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					0EEADA121ED42BB300F92E33 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1193,6 +1226,7 @@
 				0E9034ED1EE54FF4009D2C7A /* LHRegistTableViewCell.m in Sources */,
 				0E8E06DF1EE4EF9000A70EB5 /* LHLoginViewController.m in Sources */,
 				0E6047171EE7F18B0091C10C /* LHGatewayModel.m in Sources */,
+				0E5082641F1CBC74006EAE06 /* LHRemoteControlViewController.m in Sources */,
 				0EEADA461ED42E7500F92E33 /* NSData+Extents.m in Sources */,
 				0EEADA051ED42BB300F92E33 /* ViewController.m in Sources */,
 				0E4A2C101F09E80600B09FDF /* ESPDatumCode.m in Sources */,
@@ -1206,6 +1240,7 @@
 				0EEADA4B1ED42E7500F92E33 /* UIFont+App.m in Sources */,
 				0E60472C1EE931640091C10C /* LHHomeHeaderView.m in Sources */,
 				0E4A2BF61F09E52600B09FDF /* ESP_CRC8.m in Sources */,
+				0EFDB0F51F1DA25800FD9422 /* LHeditGatewayViewController.m in Sources */,
 				0E4A2C121F09E80600B09FDF /* ESPTouchGenerator.m in Sources */,
 				0E6047111EE798DD0091C10C /* LHBaseTableModel.m in Sources */,
 				0E4A2C111F09E80600B09FDF /* ESPGuideCode.m in Sources */,
@@ -1213,7 +1248,6 @@
 				0EEADA4D1ED42E7500F92E33 /* UINavigationBar+Awesome.m in Sources */,
 				0E4A2C0F1F09E80600B09FDF /* ESPDataCode.m in Sources */,
 				0E68C7CC1EEF80D0002F98AA /* LHGatewayListViewController.m in Sources */,
-				0E9C5A1A1EEE6A0600EB0426 /* LHRecordCellModel.m in Sources */,
 				0E68C7D41EEF857E002F98AA /* LHLockDetailViewController.m in Sources */,
 				0EFE4B981EF22F0600842E34 /* LHAddUserViewController.m in Sources */,
 				0E2253AA1EDE5FBD003B6AE4 /* JXTAlertView.m in Sources */,
@@ -1223,11 +1257,13 @@
 				0E2253A91EDE5FBD003B6AE4 /* JXTAlertController.m in Sources */,
 				0EEADA681ED42F5D00F92E33 /* LHMineViewController.m in Sources */,
 				0EEAD9FF1ED42BB300F92E33 /* main.m in Sources */,
+				0EC5E60A1F2742DB00C8E6C9 /* LHAuthUserModel.m in Sources */,
 				0E60506B1EF7B727007168CF /* LHDeviceService.m in Sources */,
 				0E9C5A061EEE3D2700EB0426 /* LHAddLock2ViewController.m in Sources */,
 				0EF153141EFFA5D40018C4DB /* LHAddGatewayTwoViewController.m in Sources */,
 				0EEADA521ED42E9900F92E33 /* LHUtils.m in Sources */,
 				0E9C5A131EEE5C7300EB0426 /* LHRecordListTableViewCell.m in Sources */,
+				0E5082601F1C5626006EAE06 /* LHGatewayDetailViewController.m in Sources */,
 				0E9C5A0A1EEE474F00EB0426 /* LHRecordListViewController.m in Sources */,
 				0EEADA621ED42F4B00F92E33 /* LHHomeViewController.m in Sources */,
 				0E9C5A031EEE38F400EB0426 /* LHAddLock1ViewController.m in Sources */,
@@ -1246,7 +1282,6 @@
 				0EFE4B9F1EF283B600842E34 /* LHChangeLockNameViewController.m in Sources */,
 				0EEADA471ED42E7500F92E33 /* NSObject+Swizzle.m in Sources */,
 				0EEADA651ED42F5500F92E33 /* LHManageViewController.m in Sources */,
-				0EFE4B9C1EF23B9300842E34 /* LHUserDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,6 +1377,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.Lilin.zhinengsuo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1390,6 +1426,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.Lilin.zhinengsuo";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1415,13 +1452,17 @@
 			baseConfigurationReference = 0C1CC3FB26D9286A0559D0D9 /* Pods-LHSmartLock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LHSmartLock/LHSmartLock.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen Lianghui (FY6Z5Y5QNC)";
 				DEVELOPMENT_TEAM = 7ZKMYBPL55;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LHSmartLock/SmartLockPrefixHeader.pch";
 				INFOPLIST_FILE = LHSmartLock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lilin.zhinengsuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6d802b0d-2ef1-483b-a99f-6ffd8e05cf1c";
+				PROVISIONING_PROFILE_SPECIFIER = zhinengsuoTestPush;
 			};
 			name = Debug;
 		};
@@ -1430,13 +1471,17 @@
 			baseConfigurationReference = 693E3AD82B4E5B8539DD2BC5 /* Pods-LHSmartLock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LHSmartLock/LHSmartLock.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chen Lianghui (FY6Z5Y5QNC)";
 				DEVELOPMENT_TEAM = 7ZKMYBPL55;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LHSmartLock/SmartLockPrefixHeader.pch";
 				INFOPLIST_FILE = LHSmartLock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = page.LHSmartLock;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lilin.zhinengsuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6d802b0d-2ef1-483b-a99f-6ffd8e05cf1c";
+				PROVISIONING_PROFILE_SPECIFIER = zhinengsuoTestPush;
 			};
 			name = Release;
 		};

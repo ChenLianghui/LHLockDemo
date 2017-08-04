@@ -49,7 +49,7 @@ const NSString *LHBaseUrl = @"http://lockplat.com:9000";
 }
 
 - (void)POSTDateWithUrlString:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionTask *task, id responseObject))success failure:(void (^)(NSURLSessionTask *operation, NSError *error))failure{
-    NSString *dicJson = [self dictionaryToJson:parameters];
+//    NSString *dicJson = [self dictionaryToJson:parameters];
 //    NSDictionary *enParameters = [NSDictionary dictionaryWithObjectsAndKeys:dicJson,@"params", nil];
     [self.manager POST:[LHBaseUrl stringByAppendingString:URLString] parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
@@ -121,6 +121,9 @@ const NSString *LHBaseUrl = @"http://lockplat.com:9000";
                 break;
             case LHApiErrorCode_LockUserAlreadyAuth:
                 errorStr = NSLocalizedString(@"对用户重复授权", nil);
+                break;
+            case LHApiErrorCode_SystemException:
+                errorStr = NSLocalizedString(@"系统异常,请联系管理员", nil);
                 break;
             default:
                 errorStr = NSLocalizedString(@"出现未知错误", nil);

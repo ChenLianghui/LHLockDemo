@@ -10,4 +10,9 @@
 
 @interface LHAuthUserModel : LHBaseModel
 
+@property (nonatomic,copy)NSString *username;
+@property (nonatomic,copy)NSString *status;//valid,有效；invalid，无效；
+@property (nonatomic,copy)NSString *start;//存的是时间戳
+@property (nonatomic,copy)NSString *end;//存的是时间戳
+
 @end

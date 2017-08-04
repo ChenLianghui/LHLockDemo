@@ -7,7 +7,10 @@
 //
 
 #import "LHBaseViewController.h"
+#import "LHGatewayModel.h"
 
 @interface LHGatewayDetailViewController : LHBaseViewController
+
+@property (nonatomic,strong)LHGatewayModel *gatewayModel;
 
 @end

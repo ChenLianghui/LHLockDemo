@@ -37,6 +37,7 @@ typedef enum : NSUInteger {
     LHApiErrorCode_KeyNotExsit = 5001,//缺少关键字
     
     LHApiErrorCode_NotDefine = 10000,//错误未定义
+    LHApiErrorCode_SystemException = 10001//系统异常
 } LHApiErrorCode;
 
 #endif /* LHNetWorkDefines_h */

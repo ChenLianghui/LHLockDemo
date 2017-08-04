@@ -8,8 +8,11 @@
 
 #import "LHChangeLockNameViewController.h"
 #import "LHBaseTextfiledView.h"
+#import "LHDeviceService.h"
 
 @interface LHChangeLockNameViewController ()
+
+@property (nonatomic,strong)UITextField *nameTF;
 
 @end
 
@@ -30,15 +33,36 @@
 - (void)addTextfieldViews{
     LHBaseTextfiledView *textfiledView = [[LHBaseTextfiledView alloc] initWithFrame:CGRectMake(0, kHeightIphone7(10), kScreenSize.width, kBorderMargin*2+kHeightIphone7(20))];
     textfiledView.backgroundColor = [UIColor backgroundColor];
-    textfiledView.textfield.tag = 90;
+    _nameTF = textfiledView.textfield;
+    _nameTF.text = self.lockModel.lockName;
     textfiledView.titleLabel.text = NSLocalizedString(@"设备名", nil);
     textfiledView.textfield.placeholder = NSLocalizedString(@"请输入设备名称", nil);
     [self.view addSubview:textfiledView];
 }
 
 - (void)SaveAction{
-    
+    if ([_nameTF.text isEqualToString:@""]) {
+        [self showFailed:NSLocalizedString(@"请输入设备名称", nil)];
+    }else{
+        __weak typeof(self)weakSelf = self;
+        [[LHDeviceService sharedInstance] changeLockNameWithGatewaySN:@"" andLockSN:self.lockModel.lockSn andLockName:_nameTF.text completed:^(NSURLSessionTask *task, id responseObject) {
+            NSLog(@"responseObject%@",responseObject);
+            [[NSNotificationCenter defaultCenter] postNotificationName:key_NoticeLockNameChange object:nil];
+            [weakSelf showSucceed:NSLocalizedString(@"保存成功", nil) complete:^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }];
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            
+        }];
+    }
 }
+
+//- (void)changeSuccess{
+//    [[NSNotificationCenter defaultCenter] postNotificationName:key_NoticeLockNameChange object:nil];
+//    [self showSucceed:NSLocalizedString(@"保存成功", nil) complete:^{
+//        
+//    }];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

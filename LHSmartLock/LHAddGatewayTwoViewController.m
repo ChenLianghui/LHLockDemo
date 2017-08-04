@@ -10,6 +10,7 @@
 #import "LHBaseTextfiledView.h"
 #import "LHDeviceService.h"
 #import "LHHomeViewController.h"
+#import "JXTAlertManagerHeader.h"
 
 @interface LHAddGatewayTwoViewController ()
 
@@ -34,6 +35,37 @@
     }];
     // Do any additional setup after loading the view.
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self TestCurrentNetIsWifi];
+}
+
+#pragma mark - 检测网络是否是WiFi
+- (void)TestCurrentNetIsWifi{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:userDefault_isConnectWifi]) {
+        [self jxt_showAlertWithTitle:NSLocalizedString(@"您当前没有连接WiFi", nil) message:NSLocalizedString(@"是否去设置", nil) appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
+            alertMaker.addActionCancelTitle(NSLocalizedString(@"取消", nil)).addActionDefaultTitle(NSLocalizedString(@"去设置", nil));
+        } actionsBlock:^(NSInteger buttonIndex, UIAlertAction * _Nonnull action, JXTAlertController * _Nonnull alertSelf) {
+            if (buttonIndex == 0) {
+                NSLog(@"取消");
+            }else if (buttonIndex == 1){
+                NSLog(@"去设置");
+                NSURL *url = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
+                float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+                if (version >= 10.0) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                }else{
+                    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                        [[UIApplication sharedApplication] openURL:url];
+                    }
+                }
+                
+            }
+        }];
+    }
+}
+
 
 - (void)addTextfiledViews{
     for (int i = 0; i < self.titleArray.count; i++) {
@@ -62,7 +94,7 @@
             NSLog(@"responseObject:%@",responseObject);
             [weakSelf showSucceed:NSLocalizedString(@"网关绑定成功", nil) complete:^{
                             for (UIViewController *vc in weakSelf.navigationController.viewControllers) {
-                                if (vc == [LHHomeViewController class]) {
+                                if ([vc isKindOfClass:[LHHomeViewController class]]) {
                                     [weakSelf.navigationController popToViewController:vc animated:YES];
                                 }
                             }

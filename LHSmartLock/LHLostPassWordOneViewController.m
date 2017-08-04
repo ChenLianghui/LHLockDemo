@@ -9,7 +9,7 @@
 #import "LHLostPassWordOneViewController.h"
 #import "LHLostPassWordTwoViewController.h"
 #import "UIButton+CountDown.h"
-
+#import "LHLoginService.h"
 
 @interface LHLostPassWordOneViewController ()
 
@@ -119,6 +119,12 @@
     if ([LHUtils isEmptyStr:mobileTF.text]) {
         [self showMessage:NSLocalizedString(@"请输入手机号", nil)];
         return;
+    }else{
+        [[LHLoginService sharedInstance] getVCodeWithMobileStr:mobileTF.text completed:^{
+            
+        } failure:^{
+            
+        }];
     }
     [button countDownFromTime:10 title:NSLocalizedString(@"重新获取", nil) unitTitle:@"s" mainColor:[UIColor clearColor] countColor:[UIColor clearColor]];
     //以下为获取验证码代码

@@ -12,6 +12,7 @@
 #import "LHLostPassWordOneViewController.h"
 #import "LHTabBarViewController.h"
 #import "LHLoginService.h"
+#import "JPUSHService.h"
 
 @interface LHLoginViewController ()<LHLoginViewDelegate>
 
@@ -33,6 +34,9 @@
 //    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
 //    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 0;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    if (![LHUtils isEmptyStr:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentUserName]]) {
+        self.loginView.userTextField.text = [[NSUserDefaults standardUserDefaults] valueForKey:key_currentUserName];
+    }
 }
 
 - (void)viewDidLoad {
@@ -78,6 +82,8 @@
                         }
                     });
                 }];
+                
+                [JPUSHService setAlias:weakSelf.loginView.userTextField.text callbackSelector:nil object:nil];
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 
             }];

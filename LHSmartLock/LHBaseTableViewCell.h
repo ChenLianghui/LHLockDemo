@@ -17,6 +17,8 @@
 //    LHBaseTableViewCellStyleNoIcon,//有title，右箭头
 //} LHBaseTableViewCellStyle;
 
+typedef void(^switchControlBlock)(BOOL isOn);
+
 @interface LHBaseTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)UIImageView *iconImageView;
@@ -27,5 +29,6 @@
 @property (nonatomic,strong)LHGatewayModel *gatewayModel;
 //@property (nonatomic,assign)LHBaseTableViewCellStyle style;
 @property (nonatomic,strong)UILabel *rightLabel;
+@property (nonatomic,copy)switchControlBlock switchBlock;
 
 @end

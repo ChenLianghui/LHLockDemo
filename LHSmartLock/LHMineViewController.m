@@ -10,6 +10,7 @@
 #import "LHUserModel.h"
 #import "LHMineTableViewCell.h"
 #import "LHLoginViewController.h"
+#import "JPUSHService.h"
 
 #define kPhoneNumber @"17606547695"
 @interface LHMineViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -27,7 +28,12 @@
     [super viewDidLoad];
     [self addImageWithName:@"" isLeft:YES WithBlock:nil];
     [self.view addSubview:self.tableview];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLogin) name:key_NoticeLogin object:nil];
     // Do any additional setup after loading the view.
+}
+
+- (void)newLogin{
+    [self.tableview reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -39,6 +45,7 @@
     if (!cell) {
         cell = [[LHMineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LHMineTableViewCell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.dataArray[indexPath.row];
     if (indexPath.row == 0) {
         cell.rightLabel.text = [LHUserModel sharedInstance].username;
@@ -63,6 +70,7 @@
 
 - (void)logoutAction{
     [[LHUserModel sharedInstance] logout];
+    [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
     UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:[[LHLoginViewController alloc] init]];
     [self presentViewController:loginNav animated:YES completion:nil];
 }
@@ -108,7 +116,9 @@
     return _logoutButton;
 }
 
-
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

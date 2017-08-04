@@ -23,4 +23,6 @@
 @property (nonatomic,weak) id<LHLockListViewDelegate> delegate;
 @property (nonatomic,strong)UICollectionView *collectionView;
 
+- (void)LineViewScrollToX:(CGFloat )x;
+
 @end

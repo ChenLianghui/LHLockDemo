@@ -13,6 +13,8 @@
 #import "LHTemporaryPasswordViewController.h"
 #import "LHAuthorUserViewController.h"
 #import "LHChangeLockNameViewController.h"
+#import "LHRemoteControlViewController.h"
+#import "LHDeviceService.h"
 
 @interface LHLockDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -25,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"锁详情", nil);
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
 }
@@ -49,6 +52,7 @@
         [array1 addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_SN" labelTitle:NSLocalizedString(@"SN序列号", nil) rightTitle:@"12345678" isHasSwitch:NO]];
         NSMutableArray *array2 = [NSMutableArray array];
         [array2 addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_name" labelTitle:NSLocalizedString(@"设备名", nil) rightTitle:nil isHasSwitch:NO]];
+        [array2 addObject:[LHBaseTableModel initBaseModelWithIconName:@"" labelTitle:NSLocalizedString(@"遥控器", nil) rightTitle:@"" isHasSwitch:NO]];
         [array2 addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_password" labelTitle:NSLocalizedString(@"修改密码", nil) rightTitle:nil isHasSwitch:NO]];
         NSMutableArray *array3 = [NSMutableArray array];
         [array3 addObject:[LHBaseTableModel initBaseModelWithIconName:@"manage_alarm" labelTitle:NSLocalizedString(@"自动报警", nil) rightTitle:nil isHasSwitch:YES]];
@@ -76,7 +80,30 @@
     if (!cell) {
         cell = [[LHBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LHBaseTableViewCell"];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataArray[indexPath.section][indexPath.row];
+    
+    if (indexPath.section == 2) {
+        if ([self.lockModel.alarm isEqualToString:@"open"]) {
+            [cell.ASwitch setOn:YES animated:YES];
+        }else{
+            [cell.ASwitch setOn:NO animated:YES];
+        }
+        UISwitch *aswitch = cell.ASwitch;
+        __weak typeof(self)weakSelf = self;
+        cell.switchBlock = ^(BOOL isOn){
+            NSString *state;
+            if (isOn) {
+                state = @"open";
+                NSLog(@"yes");
+            }else{
+                state = @"close";
+                NSLog(@"no");
+            }
+            [weakSelf changeAlarmToState:state withSwitch:aswitch];
+        };
+    }
+    
     return cell;
 }
 
@@ -86,16 +113,22 @@
             case 0:
             {
                 LHChangeLockNameViewController *changeLockVC = [[LHChangeLockNameViewController alloc] init];
+                changeLockVC.lockModel = self.lockModel;
                 [self.navigationController pushViewController:changeLockVC animated:YES];
             }
                 break;
             case 1:
             {
+                LHRemoteControlViewController *remoteVC = [[LHRemoteControlViewController alloc] init];
+                [self.navigationController pushViewController:remoteVC animated:YES];
+            }
+                break;
+            case 2:{
                 LHChangeLockPasswordViewController *changePassword = [[LHChangeLockPasswordViewController alloc] init];
+                changePassword.lockModel = self.lockModel;
                 [self.navigationController pushViewController:changePassword animated:YES];
             }
                 break;
-                
             default:
                 break;
         }
@@ -103,9 +136,11 @@
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             LHTemporaryPasswordViewController *temporaryVC = [[LHTemporaryPasswordViewController alloc] init];
+            temporaryVC.lockModel = self.lockModel;
             [self.navigationController pushViewController:temporaryVC animated:YES];
         }else{
             LHAuthorUserViewController *authorVC = [[LHAuthorUserViewController alloc] init];
+            authorVC.lockModel = self.lockModel;
             [self.navigationController pushViewController:authorVC animated:YES];
         }
     }
@@ -114,6 +149,19 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenSize.width, kHeightIphone7(20))];
     return view;
+}
+
+- (void)changeAlarmToState:(NSString *)state withSwitch:(UISwitch *)Aswitch{
+    [[LHDeviceService sharedInstance] lockAlarmSettingWithGatewaySN:nil andLockSN:self.lockModel.lockSn andAlarm:state completed:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"resonseObject:%@",responseObject);
+//        if ([state isEqualToString:@"open"]) {
+//            [Aswitch setOn:NO animated:YES];
+//        }else{
+//            [Aswitch setOn:YES animated:YES];
+//        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,8 +7,9 @@
 //
 
 #import "LHAuthorUserViewController.h"
-#import "LHUserDetailViewController.h"
 #import "LHAddUserViewController.h"
+#import "LHDeviceService.h"
+#import "LHAuthUserModel.h"
 
 @interface LHAuthorUserViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -25,11 +26,37 @@
     [self.view addSubview:self.tableview];
     __weak typeof(self)weakSelf = self;
     [self addItemWithName:NSLocalizedString(@"添加", nil) isLeft:NO WithBlock:^{
-        [weakSelf.navigationController pushViewController:[[LHAddUserViewController alloc] init] animated:YES];
+        LHAddUserViewController *addVC = [[LHAddUserViewController alloc] init];
+        addVC.isAdd = YES;
+        addVC.lockModel = weakSelf.lockModel;
+        [weakSelf.navigationController pushViewController:addVC animated:YES];
     }];
-    // Do any additional setup after loading the view.
+    [self getData];
+    //当详情页删除授权用户时，或者添加了新的授权用户时。此时刷新数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hadDeletedAuthorUser) name:key_NoticeAutherUserAmountChange object:nil];
 }
 
+- (void)hadDeletedAuthorUser{
+    [self getData];
+}
+
+- (void)getData{
+    __weak typeof(self)weakSelf = self;
+    [[LHDeviceService sharedInstance] findAllAuthUserUnderTheLockWithLockSN:self.lockModel.lockSn completed:^(NSURLSessionTask *task, id responseObject) {
+        NSLog(@"resonseObject:%@",responseObject);
+        [weakSelf.dataArray removeAllObjects];
+        
+        for (NSDictionary *dict in [responseObject valueForKey:@"data"]) {
+            LHAuthUserModel *authUserModel = [[LHAuthUserModel alloc] init];
+            [authUserModel setValuesForKeysWithDictionary:dict];
+            [weakSelf.dataArray addObject:authUserModel];
+        }
+        [weakSelf.tableview reloadData];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+    }];
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
@@ -40,13 +67,16 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
-    cell.textLabel.text = self.dataArray[indexPath.row];
+    LHAuthUserModel *authUserModel = self.dataArray[indexPath.row];
+    cell.textLabel.text = authUserModel.username;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LHUserDetailViewController *detailVC = [[LHUserDetailViewController alloc] init];
-    detailVC.userName = self.dataArray[indexPath.row];
+    LHAddUserViewController *detailVC = [[LHAddUserViewController alloc] init];
+    detailVC.authUserModel = self.dataArray[indexPath.row];
+    detailVC.isAdd = NO;
+    detailVC.lockModel = self.lockModel;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -63,9 +93,13 @@
 
 - (NSMutableArray *)dataArray{
     if (!_dataArray) {
-        _dataArray = [[NSMutableArray alloc] initWithObjects:@"张三",@"李四", nil];
+        _dataArray = [[NSMutableArray alloc] init];
     }
     return _dataArray;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

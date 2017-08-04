@@ -7,8 +7,10 @@
 //
 
 #import "LHBaseViewController.h"
+#import "LHLockModel.h"
 
 @interface LHLockDetailViewController : LHBaseViewController
 
+@property (nonatomic,strong)LHLockModel *lockModel;
 
 @end

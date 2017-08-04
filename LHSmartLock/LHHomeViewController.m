@@ -20,6 +20,7 @@
 #import "LHMessageListViewController.h"
 #import "LHLoginService.h"
 #import "LHDeviceService.h"
+#import "MJRefresh.h"
 
 #define kGatewayCellId @"gatewayCellId"
 #define kLockCellId @"lockCellId"
@@ -27,9 +28,11 @@
 @interface LHHomeViewController ()<LHHomeHeaderViewDelegate,LHLockListViewDelegate>
 
 {
-    NSInteger _selectedIndex;
+    NSInteger _selectedGatewayIndex;//网关的选择号
+    NSInteger _selectedIndex;//锁的选择号
 }
 
+@property (nonatomic, strong)UIScrollView *mainScrollView;
 @property (nonatomic, strong)NSMutableArray *gatewayArray;
 @property (nonatomic, strong)LHHomeHeaderView *headerView;
 @property (nonatomic, strong)LHLockListView *lockListView;
@@ -40,29 +43,15 @@
 
 @implementation LHHomeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak typeof(self)weakSelf = self;
-//    [self addItemWithName:@"login" isLeft:NO WithBlock:^{
-////        LHLoginViewController *loginVC = [[LHLoginViewController alloc] init];
-////        loginVC.hidesBottomBarWhenPushed = YES;
-////        [weakSelf.navigationController pushViewController:loginVC animated:YES];
-//        LHGatewayModel *model = [LHGatewayModel new];
-//        model.name = @"TPLink-new";
-//        [weakSelf.gatewayArray addObject:model];
-//        weakSelf.headerView.gatewayArray = weakSelf.gatewayArray;
-////        [weakSelf.headerView reloadGatewayDate];
-//    }];
-//    [self addItemWithName:@"jian" isLeft:YES WithBlock:^{
-//        //        LHLoginViewController *loginVC = [[LHLoginViewController alloc] init];
-//        //        loginVC.hidesBottomBarWhenPushed = YES;
-//        //        [weakSelf.navigationController pushViewController:loginVC animated:YES];
-//        if (weakSelf.gatewayArray.count>0) {
-//            [weakSelf.gatewayArray removeLastObject];
-//            weakSelf.headerView.gatewayArray = weakSelf.gatewayArray;
-////            [weakSelf.headerView reloadGatewayDate];
-//        }
-//    }];
+
     [self addImageWithName:@"record" isLeft:YES WithBlock:^{
         LHRecordListViewController *recordVC = [[LHRecordListViewController alloc] init];
         recordVC.hidesBottomBarWhenPushed = YES;
@@ -75,22 +64,62 @@
         [weakSelf.navigationController pushViewController:messageVC animated:YES];
     }];
     [self testNetwork];
-    [self TestCurrentNetIsWifi];
+    
     [self getGatewayData];
     
     self.view.backgroundColor = [UIColor backgroundColor];
-    [self.view addSubview:self.headerView];
-    [self.view addSubview:self.lockListView];
-    [self.view addSubview:self.actionButton];
+    [self.view addSubview:self.mainScrollView];
+    [self.mainScrollView addSubview:self.headerView];
+    [self.mainScrollView addSubview:self.lockListView];
+    [self.mainScrollView addSubview:self.actionButton];
+    _selectedGatewayIndex = 0;
     _selectedIndex = 0;
     [self tokenLogin];
+    //如果没有开启推送，提醒用户开启
+    if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
+        [self showPushAlert];
+    }
+    
+    //切换用户通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NewLoginSuccess) name:key_NoticeLogin object:nil];
+    //添加新锁通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddNewLock) name:key_NoticeAddLock object:nil];
+    //删除网关通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeGatewayAmount) name:key_NoticeGatewayAmountChange object:nil];
+//    //弹框提醒开启推送通知
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPushAlert) name:key_NoticeShowPushAlert object:nil];
+    
     // Do any additional setup after loading the view.
 }
+#pragma mark - 切换账户后重新加载数据
+- (void)NewLoginSuccess{
+    [self getGatewayData];
+}
+#pragma mark - 添加新锁后加载该网关下锁的数据
+- (void)AddNewLock{
+    [self.lockListArray removeAllObjects];
+    [self getLockDataWithSNString:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentGatewaySN]];
+}
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    
+- (void)showPushAlert{
+    __weak typeof(self)weakSelf = self;
+    [self jxt_showAlertWithTitle:NSLocalizedString(@"您未开启推送，软件的一些功能将会被限制", nil) message:NSLocalizedString(@"是否去设置", nil) appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
+        alertMaker.addActionCancelTitle(NSLocalizedString(@"取消", nil)).addActionDefaultTitle(NSLocalizedString(@"去设置", nil));
+    } actionsBlock:^(NSInteger buttonIndex, UIAlertAction * _Nonnull action, JXTAlertController * _Nonnull alertSelf) {
+        if (buttonIndex == 0) {
+            
+        }else{
+            NSString *str = [NSString stringWithFormat:@"App-Prefs:root=NOTIFICATIONS_ID&path=%@",[NSBundle mainBundle].bundleIdentifier];
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:str]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str] options:@{} completionHandler:nil];
+            }
+
+        }
+    }];
+}
+
+- (void)changeGatewayAmount{
+    [self getGatewayData];
 }
 
 #pragma mark - 检测网络
@@ -117,8 +146,8 @@
 #pragma mark - 检测网络是否是WiFi
 - (void)TestCurrentNetIsWifi{
     if (![[NSUserDefaults standardUserDefaults] boolForKey:userDefault_isConnectWifi]) {
-        [self jxt_showAlertWithTitle:@"您当前没有连接WiFi" message:@"是否去设置" appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
-            alertMaker.addActionCancelTitle(@"取消").addActionDefaultTitle(@"去设置");
+        [self jxt_showAlertWithTitle:NSLocalizedString(@"您当前没有连接WiFi", nil) message:NSLocalizedString(@"是否去设置", nil) appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
+            alertMaker.addActionCancelTitle(NSLocalizedString(@"取消", nil)).addActionDefaultTitle(NSLocalizedString(@"去设置", nil));
         } actionsBlock:^(NSInteger buttonIndex, UIAlertAction * _Nonnull action, JXTAlertController * _Nonnull alertSelf) {
             if (buttonIndex == 0) {
                 NSLog(@"取消");
@@ -137,10 +166,9 @@
             }
         }];
     }else{
-        [self jxt_showAlertWithTitle:@"当前连接为WIFI" message:nil appearanceProcess:^(JXTAlertController * _Nonnull alertMaker) {
-            alertMaker.toastStyleDuration = 1;
-            
-        } actionsBlock:NULL];
+        LHAddGatewayViewController *addGatewayVC = [[LHAddGatewayViewController alloc] init];
+        addGatewayVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:addGatewayVC animated:YES];
     }
 }
 
@@ -148,6 +176,7 @@
 - (void)getGatewayData{
     __weak typeof(self)weakSelf = self;
     [[LHDeviceService sharedInstance] findAllGatewayCompleted:^(NSURLSessionTask *task, id responseObject) {
+        [weakSelf endRefresh];
         [weakSelf.gatewayArray removeAllObjects];
         NSArray *array = [responseObject valueForKey:@"data"];
         for (NSDictionary *dict in array) {
@@ -159,18 +188,24 @@
             weakSelf.headerView.gatewayArray = self.gatewayArray;
         });
         if (weakSelf.gatewayArray.count != 0) {
-            LHGatewayModel *model = weakSelf.gatewayArray[0];
+            LHGatewayModel *model = weakSelf.gatewayArray[_selectedGatewayIndex];
             [weakSelf getLockDataWithSNString:model.gatewaySn];
             [[NSUserDefaults standardUserDefaults] setValue:model.gatewaySn forKey:key_currentGatewaySN];
+            weakSelf.actionButton.hidden = NO;
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.lockListView.lockArray = nil;
+                weakSelf.actionButton.hidden = YES;
             });
         }
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
-        
+        [weakSelf endRefresh];
     }];
+}
+
+- (void)endRefresh{
+    [_mainScrollView.mj_header endRefreshing];
 }
 
 #pragma mark - 获取某个网关下的锁的数据
@@ -184,22 +219,23 @@
         for (NSDictionary *dict in array) {
             LHLockModel *model = [LHLockModel new];
             [model setValuesForKeysWithDictionary:dict];
+//            model.online = YES;
             [weakSelf.lockListArray addObject:model];
         }
-        LHLockModel *lockModel = [LHLockModel new];
-        lockModel.online = YES;
-        lockModel.lockName = @"test1";
-        lockModel.lockSn = @"salfiowoe";
-        lockModel.power = @"middle";
-        lockModel.status = @"open";
-        [weakSelf.lockListArray addObject:lockModel];
-        LHLockModel *lockModel2 = [LHLockModel new];
-        lockModel2.online = YES;
-        lockModel2.lockName = @"test2";
-        lockModel2.lockSn = @"f32sd23";
-        lockModel2.power = @"high";
-        lockModel2.status = @"close";
-        [weakSelf.lockListArray addObject:lockModel2];
+//        LHLockModel *lockModel = [LHLockModel new];
+//        lockModel.online = YES;
+//        lockModel.lockName = @"test1";
+//        lockModel.lockSn = @"salfiowoe";
+//        lockModel.power = @"middle";
+//        lockModel.status = @"open";
+//        [weakSelf.lockListArray addObject:lockModel];
+//        LHLockModel *lockModel2 = [LHLockModel new];
+//        lockModel2.online = YES;
+//        lockModel2.lockName = @"test2";
+//        lockModel2.lockSn = @"f32sd23";
+//        lockModel2.power = @"high";
+//        lockModel2.status = @"close";
+//        [weakSelf.lockListArray addObject:lockModel2];
         weakSelf.lockListView.lockArray = weakSelf.lockListArray;
         if (weakSelf.lockListArray.count != 0) {
             LHLockModel *model = weakSelf.lockListArray.firstObject;
@@ -227,10 +263,14 @@
 #pragma mark - 点击了某个网关
 - (void)hadChangeGatewayWithIndex:(NSInteger)index{
     NSLog(@"index:%ld",index);
+    _selectedGatewayIndex = index;
     if (index != self.gatewayArray.count) {
+        _selectedIndex = 0;
+        self.actionButton.userInteractionEnabled = YES;
         LHGatewayModel *gatewayModel = self.gatewayArray[index];
         [[NSUserDefaults standardUserDefaults] setValue:gatewayModel.gatewaySn forKey:key_currentGatewaySN];
         [self getLockDataWithSNString:gatewayModel.gatewaySn];
+//        [self.lockListView LineViewScrollToX:kScreenSize.width/8];
     }else{
         [self.lockListArray removeAllObjects];
         self.lockListView.lockArray = self.lockListArray;
@@ -241,9 +281,7 @@
 }
 #pragma mark - 点击了空的网关(新增网关)
 - (void)hadClickedTheEmptyGateway{
-    LHAddGatewayViewController *addGatewayVC = [[LHAddGatewayViewController alloc] init];
-    addGatewayVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:addGatewayVC animated:YES];
+    [self TestCurrentNetIsWifi];
 }
 
 #pragma mark - LHLockListViewDelegate
@@ -303,21 +341,37 @@
 #pragma mark - 点击确定
 - (void)commitAction{
     LHLockModel *lockModel = self.lockListArray[_selectedIndex];
+//    if ([lockModel.status isEqualToString:@"open"]) {
+//        <#statements#>
+//    }
+    __weak typeof(self)weakSelf = self;
+    NSString *statusStr = [lockModel.status isEqualToString:@"open"] ? @"close" : @"open" ;
+    [[LHDeviceService sharedInstance] controlTheLockWithGatewaySN:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentGatewaySN] lockSn:lockModel.lockSn ToStatus:statusStr completed:^(NSURLSessionTask *task, id responseObject) {
+        [weakSelf controlSuccessAction];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        
+    }];
+}
+
+- (void)controlSuccessAction{
+    LHLockModel *lockModel = self.lockListArray[_selectedIndex];
     NSString *successStr;
     if ([lockModel.status isEqualToString:@"open"]) {
-        successStr = NSLocalizedString(@"门锁已开启", nil);
-    }else if([lockModel.status isEqualToString:@"close"]){
         successStr = NSLocalizedString(@"门锁已关闭", nil);
+    }else if([lockModel.status isEqualToString:@"close"]){
+        successStr = NSLocalizedString(@"门锁已开启", nil);
     }
     [self showSucceed:successStr complete:^{
         if ([lockModel.status isEqualToString:@"open"]) {
-            [self.actionButton setTitle:NSLocalizedString(@"关锁", nil) forState:UIControlStateNormal];
-        }else if([lockModel.status isEqualToString:@"close"]){
+            lockModel.status = @"close";
             [self.actionButton setTitle:NSLocalizedString(@"开锁", nil) forState:UIControlStateNormal];
+        }else if([lockModel.status isEqualToString:@"close"]){
+            lockModel.status = @"open";
+            
+            [self.actionButton setTitle:NSLocalizedString(@"关锁", nil) forState:UIControlStateNormal];
         }
-//        lockModel.isLock = !lockModel.isLock;
         [self.lockListArray replaceObjectAtIndex:_selectedIndex withObject:lockModel];
-        [_lockListView.collectionView reloadData];
+        self.lockListView.lockArray = self.lockListArray;
     }];
 }
 
@@ -328,6 +382,18 @@
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         
     }];
+}
+
+- (UIScrollView *)mainScrollView{
+    if (!_mainScrollView) {
+        _mainScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        _mainScrollView.backgroundColor = [UIColor clearColor];
+        __weak typeof(self)weakSelf = self;
+        _mainScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf getGatewayData];
+        }];
+    }
+    return _mainScrollView;
 }
 
 - (LHHomeHeaderView *)headerView{
@@ -390,6 +456,10 @@
         [_actionButton addTarget:self action:@selector(actionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _actionButton;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

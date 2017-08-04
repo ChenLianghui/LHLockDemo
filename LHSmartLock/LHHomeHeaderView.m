@@ -46,10 +46,8 @@
     _collectionView.showsHorizontalScrollIndicator = NO;
     _collectionView.pagingEnabled = YES;
     [_collectionView registerClass:[LHSelectGatewayCollectionViewCell class] forCellWithReuseIdentifier:kGatewayCellId];
+
     [self addSubview:_collectionView];
-    
-    
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

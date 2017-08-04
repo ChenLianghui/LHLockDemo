@@ -54,9 +54,10 @@
     if (![LHUtils isEmptyStr:_passwordTF.text]) {
         if (![LHUtils isEmptyStr:_againTF.text]) {
             [[LHDeviceService sharedInstance] bindLockWithGateWaySN:[[NSUserDefaults standardUserDefaults] valueForKey:key_currentGatewaySN] andLockSN:self.lockSN andLockName:self.lockname andPassword:_passwordTF.text completed:^(NSURLSessionTask *task, id responseObject) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:key_NoticeAddLock object:nil];
                 [weakSelf showSucceed:NSLocalizedString(@"添加成功", nil) complete:^{
                     for (UIViewController *VC in weakSelf.navigationController.viewControllers) {
-                        if (VC == [LHHomeViewController class]) {
+                        if ([VC isKindOfClass:[LHHomeViewController class]]) {
                             [weakSelf.navigationController popToViewController:VC animated:YES];
                         }
                     }
